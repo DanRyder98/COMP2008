@@ -1,0 +1,68 @@
+//Initial draft for sql databases
+
+CREATE TABLE IF NOT EXISTS Users (
+	ID	INT(9) NOT NULL,
+	username	VARCHAR ( 45 ),
+	password	VARCHAR ( 45 ),
+	role	ENUM('Admin','Registrar','Teacher','Student'),
+	PRIMARY KEY(ID) ENGINE=InnoDB;
+);
+CREATE TABLE IF NOT EXISTS Student (
+	registrationNumber	INT ( 9 ) NOT NULL UNIQUE,
+	degreeCode	Char ( 7 ) NOT NULL,
+	degreeClass	INT(1),
+	title	VARCHAR ( 45 ) NOT NULL,
+	surname	VARCHAR ( 45 ) NOT NULL,
+	forename	VARCHAR ( 45 ) NOT NULL,
+	universityEmail	VARCHAR ( 45 ) NOT NULL UNIQUE,
+	personalTutor	VARCHAR ( 45 ) NOT NULL
+	PRIMARY KEY(registrationNumber)
+	FOREIGN KEY(registrationNumber) REFERENCES Users(ID))
+	FOREIGN KEY(degreeCode) REFERENCES Degree(degreeCode)) ENGINE=InnoDB;
+	
+CREATE TABLE IF NOT EXISTS PeriodOfStudy (
+	registrationNumber	INT ( 9 ) NOT NULL,
+	label	CHAR ( 1 ),
+	startDate	DATE,
+	endDate	DATE,
+	PRIMARY KEY(registrationNumber,label)
+	FOREIGN KEY (registrationNumber) REFERENCES Student(registrationNumber)) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ModuleSelected (
+	registrationNumber	INT ( 9 ) NOT NULL,
+	moduleCode	CHAR ( 7 ) NOT NULL,
+	initialGrade	FLOAT ( 4 , 2 ),
+	resitGrade	FLOAT ( 4 , 2 ),
+	PRIMARY KEY(moduleCode)
+	FOREIGN KEY(registrationNumber) REFERENCES Student(registrationNumber))
+	FOREIGN KEY(moduleCode) REFERENCES Student(moduleCode)) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ModuleApproved (
+	moduleCode	CHAR ( 7 ) UNIQUE,
+	name	VARCHAR ( 45 ),
+	credits	INT NOT NULL,
+	sessionOfStudy	ENUM('Summer','Autumn','Spring','Year Long'),
+	isCore	TINYINT ( 1 ),
+	PRIMARY KEY(moduleCode) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Department (
+	departmentCode	CHAR ( 3 ) NOT NULL UNIQUE,
+	departmentName	VARCHAR ( 45 ) NOT NULL UNIQUE,
+	PRIMARY KEY(departmentCode) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS DegreeOfDepartment (
+	degreeCode	CHAR ( 7 ),
+	departmentCode	CHAR ( 3 ),
+	isLead	TINYINT ( 1 )
+	PRIMARY KEY(degreeCode,departmentCode)
+	FOREIGN KEY(departmentCode) REFERENCES Department(departmentCode)) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Degree (
+	degreeCode	CHAR ( 7 ),
+	name	VARCHAR ( 45 ),
+	levelOfStudy	INT,
+	placment	TINYINT ( 1 ),
+	PRIMARY KEY(degreeCode)
+	FOREIGN KEY(departmentCode) REFERENCES Department(departmentCode)) ENGINE=InnoDB;
+
+
