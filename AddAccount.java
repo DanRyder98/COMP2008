@@ -29,6 +29,7 @@ public class AddAccount extends javax.swing.JFrame {
         CheckUniqueButton = new javax.swing.JButton();
         PasswordLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        AddAccountButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +87,14 @@ public class AddAccount extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Registrar", "Teacher", "Student" }));
 
+        AddAccountButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        AddAccountButton.setText("Add Account");
+        AddAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddAccountButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,6 +129,10 @@ public class AddAccount extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CheckUniqueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(346, 346, 346))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddAccountButton)
+                .addGap(494, 494, 494))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +156,9 @@ public class AddAccount extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(254, 254, 254)
+                .addGap(95, 95, 95)
+                .addComponent(AddAccountButton)
+                .addGap(136, 136, 136)
                 .addComponent(BackButton)
                 .addContainerGap())
         );
@@ -167,6 +182,10 @@ public class AddAccount extends javax.swing.JFrame {
     private void CheckUniqueButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // Change button to green if unique or red otherwise
     }                                                 
+
+    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+    }                                                
 
     public static void main(String args[]) {
         try {
@@ -195,6 +214,7 @@ public class AddAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton AddAccountButton;
     private javax.swing.JLabel AddAccountLabel;
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
