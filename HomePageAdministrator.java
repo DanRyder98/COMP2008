@@ -1,4 +1,5 @@
-package Admin;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
