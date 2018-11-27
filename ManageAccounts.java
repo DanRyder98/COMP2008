@@ -1,64 +1,60 @@
-//home page for Teacher
+package Admin;
 
-import java.awt.*;
-import javax.swing.*;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
+/**
+ *
+ * @author Daniel Ryder
+ */
+public class ManageAccounts extends javax.swing.JFrame {
 
-public class ManageAccounts extends JFrame{
-	 private static final long serialVersionUID = 2L;
+    /**
+     * Creates new form ManageAccounts
+     */
+    public ManageAccounts() {
+        initComponents();
+    }
 
-	 public ManageAccounts(String title) throws HeadlessException {
-		 // creating the window
-		 super(title);
-		 Toolkit toolkit = Toolkit.getDefaultToolkit();
-		 Dimension screenSize = toolkit.getScreenSize();
-		 setSize(screenSize.width, screenSize.height);
-		 setLocation(0, 0);
-		 setDefaultCloseOperation(EXIT_ON_CLOSE);
-		 
-		 
-		initComponents();
-		 
-		 
-		 setVisible(true);
-	 }
-         
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
 
-        private void initComponents() {
-
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        AdminLabel = new javax.swing.JLabel();
+        ManageAccountsLabel = new javax.swing.JLabel();
+        AddAccountButton = new javax.swing.JButton();
+        RemoveAccountButton = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel1.setText("Administrator");
+        AdminLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        AdminLabel.setText("Administrator");
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Manage Accounts");
+        ManageAccountsLabel.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        ManageAccountsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ManageAccountsLabel.setText("Manage Accounts");
 
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton1.setText("Add Account");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AddAccountButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        AddAccountButton.setText("Add Account");
+        AddAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AddAccountButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton2.setText("Remove Account");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        RemoveAccountButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        RemoveAccountButton.setText("Remove Account");
+        RemoveAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                RemoveAccountButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton3.setText("Back");
+        BackButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,55 +64,80 @@ public class ManageAccounts extends JFrame{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(AdminLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ManageAccountsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
+                    .addComponent(AddAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RemoveAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(AdminLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ManageAccountsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(187, 187, 187)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AddAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(52, 52, 52)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RemoveAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(196, 196, 196)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>                        
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        this.setVisible(false);
+        new AddAccount().setVisible(true);
+    }                                                
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void RemoveAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         // TODO add your handling code here:
+    }                                                   
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        this.setVisible(false);
+        new HomePageAdministrator().setVisible(true);
+    }                                          
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ManageAccounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ManageAccounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ManageAccounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ManageAccounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ManageAccounts().setVisible(true);
+            }
+        });
     }
-    
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }   
-    
-    public static void main(String[] args) {
-		new ManageAccounts("Manage Accounts");
-		 
-    }
-    
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton AddAccountButton;
+    private javax.swing.JLabel AdminLabel;
+    private javax.swing.JButton BackButton;
+    private javax.swing.JLabel ManageAccountsLabel;
+    private javax.swing.JButton RemoveAccountButton;
+    // End of variables declaration                   
 }
