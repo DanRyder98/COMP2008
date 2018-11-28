@@ -43,7 +43,7 @@ public class homepageR extends JFrame{
         jLabel2.setText("Registrar");
 
         jButton1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton1.setText("Manage Accounts");
+        jButton1.setText("Manage Students");
         jButton1.setToolTipText("Add/remove students, link them to courses, register them");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +132,8 @@ public class homepageR extends JFrame{
     }
          
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    	this.setVisible(false);
+        new manageStudents().setVisible(true);
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
