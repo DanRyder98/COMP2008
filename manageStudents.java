@@ -98,7 +98,8 @@ public class manageStudents extends javax.swing.JFrame {
     }                                                
 
     private void RemoveAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
+    	this.setVisible(false);
+        new removeStudents().setVisible(true);
     }                                                   
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
