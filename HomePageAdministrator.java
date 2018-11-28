@@ -165,31 +165,38 @@ public class HomePageAdministrator extends javax.swing.JFrame {
     }                                                    
 
     private void AddDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddDepartments().setVisible(true);
     }                                                    
 
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new LoggingIn().setVisible(true);
     }                                            
 
     private void RemoveDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new RemoveDepartments().setVisible(true);
     }                                                       
 
     private void AddDegreeCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddDegreeCourse().setVisible(true);
     }                                                      
 
     private void RemoveDegreeCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                          
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new RemoveDegreeCourse().setVisible(true);
     }                                                         
 
     private void AddModulesOverallButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddModulesOverall().setVisible(true);
     }                                                       
 
     private void RemoveModulesOverallButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                           
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new RemoveModulesOverall().setVisible(true);
     }                                                          
 
     public static void main(String args[]) {
