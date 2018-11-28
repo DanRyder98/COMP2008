@@ -140,16 +140,19 @@ public class homepageT extends JFrame{
             pack();
         }
          
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {  
+        	this.setVisible(false);
+	        new addGrades("Add Grade").setVisible(true);
             
         }                                        
 
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-            
+        	this.setVisible(false);
+	        new updateGrade("update grade").setVisible(true);
         }                                        
 
         private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-            
+        	
         }                                        
 
         private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -157,7 +160,8 @@ public class homepageT extends JFrame{
         }                                        
 
         private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-            
+        	this.setVisible(false);
+	        new login("login").setVisible(true);
         }                                        
 
         private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         

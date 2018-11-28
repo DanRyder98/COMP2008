@@ -36,16 +36,29 @@ public class validatemodulesS extends JFrame {
 	 JButton button = new JButton("Search Modules");
 	 contentPane.add(button, BorderLayout.CENTER);
 	 
+	 JButton backbutton = new JButton("Back");
+	 contentPane.add(backbutton, BorderLayout.CENTER);
+	 
 	 button.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
              buttonActionPerformed(evt);
              }
          });
+	 
+	 backbutton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+             BackButtonActionPerformed(evt);
+             }
+	  });
 	 setVisible(true);
 	 
 	 }
 	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {                                         
          
+     }
+	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+		 this.setVisible(false);
+	        new homepageR("homepage").setVisible(true);
      }
 	 public static void main(String[] args) {
 		 new validatemodulesS("show module for a student");

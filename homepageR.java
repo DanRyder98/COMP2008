@@ -136,19 +136,23 @@ public class homepageR extends JFrame{
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new addModulesS("Adding modules to student").setVisible(true);
     }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    	this.setVisible(false);
+        new removeModulesS("removing modules from students").setVisible(true);
     }                                        
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    	this.setVisible(false);
+        new validatemodulesS("validate modules to student").setVisible(true);
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    	this.setVisible(false);
+        new login("login").setVisible(true);
     }   
          
 	 public static void main(String[] args) {
