@@ -18,8 +18,7 @@ public class manageSearch extends JFrame {
 	 contentPane.setLayout(new FlowLayout());
 	 
 	 
-	 JLabel label4 = new JLabel ("Student name ");
-	 contentPane.add(label4, BorderLayout.NORTH);
+	
 	 
 	 
 	 JTextField textField4 = new JTextField(20);
