@@ -133,7 +133,7 @@ public class homepageR extends JFrame{
          
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	this.setVisible(false);
-        new manageStudents().setVisible(true);
+        new manageSearch("search student").setVisible(true);
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
