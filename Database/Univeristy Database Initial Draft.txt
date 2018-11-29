@@ -1,8 +1,8 @@
 //Initial draft for sql databases
 
 CREATE TABLE IF NOT EXISTS Users (
-	ID	INT(9) NOT NULL,
-	username	VARCHAR ( 45 ),
+	ID	INT(9) NOT NULL UNIQUE,
+	username	VARCHAR ( 45 ) UNIQUE,
 	password	VARCHAR ( 45 ),
 	role	ENUM('Admin','Registrar','Teacher','Student'),
 	PRIMARY KEY(ID)) ENGINE=InnoDB;
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Student (
 	registrationNumber	INT ( 9 ) NOT NULL UNIQUE,
 	degreeCode	Char ( 7 ) NOT NULL,
 	degreeClass	INT(1),
-	title	VARCHAR ( 45 ) NOT NULL,
+	title	ENUM('Mr', 'MS') NOT NULL,
 	surname	VARCHAR ( 45 ) NOT NULL,
 	forename	VARCHAR ( 45 ) NOT NULL,
 	universityEmail	VARCHAR ( 45 ) NOT NULL UNIQUE,
@@ -33,17 +33,20 @@ CREATE TABLE IF NOT EXISTS ModuleSelected (
 	moduleCode	CHAR ( 7 ) NOT NULL,
 	initialGrade	FLOAT ( 4 , 2 ),
 	resitGrade	FLOAT ( 4 , 2 ),
-	PRIMARY KEY(moduleCode)
+	credits	INT NOT NULL,
+	label	CHAR ( 1 ),
+	PRIMARY KEY(registrationNumber, moduleCode)
 	FOREIGN KEY(registrationNumber) REFERENCES Student(registrationNumber)
 	FOREIGN KEY(moduleCode) REFERENCES Student(moduleCode)) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS ModuleApproved (
+CREATE TABLE IF NOT EXISTS Module (
 	moduleCode	CHAR ( 7 ) UNIQUE,
 	name	VARCHAR ( 45 ),
 	credits	INT NOT NULL,
 	sessionOfStudy	ENUM('Summer','Autumn','Spring','Year Long'),
 	isCore	TINYINT ( 1 ),
-	PRIMARY KEY(moduleCode)) ENGINE=InnoDB;
+	PRIMARY KEY(moduleCode)
+	FOREIGN KEY(registrationNumber) REFERENCES Student(registrationNumber)) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Department (
 	departmentCode	CHAR ( 3 ) NOT NULL UNIQUE,
