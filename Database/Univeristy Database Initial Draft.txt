@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS Users (
 	username	VARCHAR ( 45 ),
 	password	VARCHAR ( 45 ),
 	role	ENUM('Admin','Registrar','Teacher','Student'),
-	PRIMARY KEY(ID) ENGINE=InnoDB;
-);
+	PRIMARY KEY(ID)) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS Student (
 	registrationNumber	INT ( 9 ) NOT NULL UNIQUE,
 	degreeCode	Char ( 7 ) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Student (
 	universityEmail	VARCHAR ( 45 ) NOT NULL UNIQUE,
 	personalTutor	VARCHAR ( 45 ) NOT NULL
 	PRIMARY KEY(registrationNumber)
-	FOREIGN KEY(registrationNumber) REFERENCES Users(ID))
+	FOREIGN KEY(registrationNumber) REFERENCES Users(ID)
 	FOREIGN KEY(degreeCode) REFERENCES Degree(degreeCode)) ENGINE=InnoDB;
 	
 CREATE TABLE IF NOT EXISTS PeriodOfStudy (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS ModuleSelected (
 	initialGrade	FLOAT ( 4 , 2 ),
 	resitGrade	FLOAT ( 4 , 2 ),
 	PRIMARY KEY(moduleCode)
-	FOREIGN KEY(registrationNumber) REFERENCES Student(registrationNumber))
+	FOREIGN KEY(registrationNumber) REFERENCES Student(registrationNumber)
 	FOREIGN KEY(moduleCode) REFERENCES Student(moduleCode)) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ModuleApproved (
@@ -43,12 +43,12 @@ CREATE TABLE IF NOT EXISTS ModuleApproved (
 	credits	INT NOT NULL,
 	sessionOfStudy	ENUM('Summer','Autumn','Spring','Year Long'),
 	isCore	TINYINT ( 1 ),
-	PRIMARY KEY(moduleCode) ENGINE=InnoDB;
+	PRIMARY KEY(moduleCode)) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Department (
 	departmentCode	CHAR ( 3 ) NOT NULL UNIQUE,
 	departmentName	VARCHAR ( 45 ) NOT NULL UNIQUE,
-	PRIMARY KEY(departmentCode) ENGINE=InnoDB;
+	PRIMARY KEY(departmentCode)) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS DegreeOfDepartment (
 	degreeCode	CHAR ( 7 ),

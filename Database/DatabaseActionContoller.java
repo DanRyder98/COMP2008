@@ -3,7 +3,7 @@ package database;
 import java.sql.*;
 import java.util.*;
 
-public abstract class DatabaseModel {
+public abstract class DatabaseActionController {
 	
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -30,7 +30,8 @@ public abstract class DatabaseModel {
 	
     protected void closeConnection() throws SQLException 
 	{
-        if (connection != null) {
+        if (connection != null) 
+		{
             connection.close();
         }
     }
