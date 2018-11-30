@@ -137,6 +137,9 @@ public class removeStudents extends javax.swing.JFrame {
 
     private void RemoveUserActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
+    	if (UsernameTextField.getText().isEmpty()) {
+   		 JOptionPane.showMessageDialog(null,"please fill all fields");
+   	 }
     }                                          
 
     /**

@@ -28,7 +28,7 @@ public class manageSearch extends JFrame {
 	 contentPane.add(label5, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField5 = new JTextField(20);
+	 textField5 = new javax.swing.JTextField();
 	 contentPane.add(textField5, BorderLayout.CENTER);
 	 
 	 
@@ -53,8 +53,14 @@ public class manageSearch extends JFrame {
 	 
 	 }
 	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {  
-		 this.setVisible(false);
-	        new manageStudents().setVisible(true);
+		 if(textField5.getText().isEmpty()) {
+			 JOptionPane.showMessageDialog(null,"please fill all fields ");
+		 }else if(textField5.getText().length()>9||textField5.getText().length()>9) {
+			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
+		 }
+		 else
+			 this.setVisible(false);
+			 new manageStudents().setVisible(true);
          
      }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -64,4 +70,5 @@ public class manageSearch extends JFrame {
 	 public static void main(String[] args) {
 		 new manageSearch("search for student");
 	 }
+	 private javax.swing.JTextField textField5;
 }
