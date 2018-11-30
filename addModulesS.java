@@ -21,35 +21,35 @@ public class addModulesS extends JFrame {
 	 contentPane.add(label, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField1 = new JTextField(20);
+	 textField1 = new javax.swing.JTextField(20);
 	 contentPane.add(textField1, BorderLayout.CENTER);
 	 
 	 JLabel label2 = new JLabel ("Module Code ");
 	 contentPane.add(label2, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField2 = new JTextField(20);
+	 textField2 = new javax.swing.JTextField(20);
 	 contentPane.add(textField2, BorderLayout.CENTER);
 	 
 	 JLabel label3 = new JLabel ("Number of Credits ");
 	 contentPane.add(label3, BorderLayout.NORTH);
 	
 	 
-	 JTextField textField3 = new JTextField(20);
+	 textField3 = new javax.swing.JTextField(20);
 	 contentPane.add(textField3, BorderLayout.CENTER);
 	 
 	 JLabel label4 = new JLabel ("Student name ");
 	 contentPane.add(label4, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField4 = new JTextField(20);
+	 textField4 = new javax.swing.JTextField(20);
 	 contentPane.add(textField4, BorderLayout.CENTER);
 	 
 	 JLabel label5 = new JLabel ("Registration number ");
 	 contentPane.add(label5, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField5 = new JTextField(20);
+	 textField5 = new javax.swing.JTextField(20);
 	 contentPane.add(textField5, BorderLayout.CENTER);
 	 
 	 
@@ -72,7 +72,15 @@ public class addModulesS extends JFrame {
 	 setVisible(true);
 	 
 	 }
-	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) { 
+		 
+		 if (textField1.getText().isEmpty() || textField2.getText().isEmpty() || textField3.getText().isEmpty() || textField4.getText().isEmpty() || textField5.getText().isEmpty()) {
+			 JOptionPane.showMessageDialog(null,"please fill all fields");
+		 } else if(textField5.getText().length()>9||textField5.getText().length()>9) {
+			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
+		 }else {
+			 //enter code here
+		 }
          
      }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -82,4 +90,9 @@ public class addModulesS extends JFrame {
 	 public static void main(String[] args) {
 		 new addModulesS("Adding new module for a student");
 	 }
+	 	private javax.swing.JTextField textField1;
+	    private javax.swing.JTextField textField2;
+	    private javax.swing.JTextField textField3;
+	    private javax.swing.JTextField textField4;
+	    private javax.swing.JTextField textField5;
 }

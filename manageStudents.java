@@ -6,7 +6,7 @@ import javax.swing.*;
 public class manageStudents extends javax.swing.JFrame {
 
     /**
-     * Creates new form ManageAccounts
+     * Creates new form ManageStudents
      */
     public manageStudents() {
         initComponents();
@@ -179,7 +179,15 @@ public class manageStudents extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void UpdateStudentAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void UpdateStudentAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {     
+    	if (RegNumberTextField.getText().isEmpty() || DegCodeTextField.getText().isEmpty() || DegClassTextField.getText().isEmpty() || TitleTextField.getText().isEmpty() || SurnameTextField.getText().isEmpty()||
+    			ForenameTextField.getText().isEmpty() || UniEmailTextField.getText().isEmpty()||PTutorTextField.getText().isEmpty()) {
+			 JOptionPane.showMessageDialog(null,"please fill all fields");
+		 } else if(RegNumberTextField.getText().length()>9||RegNumberTextField.getText().length()>9) {
+			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
+		 }else {
+			 //enter code here
+		 }
     
     }                                                
 

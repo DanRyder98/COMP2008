@@ -18,18 +18,11 @@ public class validatemodulesS extends JFrame {
 	 contentPane.setLayout(new FlowLayout());
 	 
 	 
-	 JLabel label4 = new JLabel ("Student name ");
-	 contentPane.add(label4, BorderLayout.NORTH);
-	 
-	 
-	 JTextField textField4 = new JTextField(20);
-	 contentPane.add(textField4, BorderLayout.CENTER);
-	 
 	 JLabel label5 = new JLabel ("Registration number ");
 	 contentPane.add(label5, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField5 = new JTextField(20);
+	 textField5 = new javax.swing.JTextField(20);
 	 contentPane.add(textField5, BorderLayout.CENTER);
 	 
 	 
@@ -54,7 +47,13 @@ public class validatemodulesS extends JFrame {
 	 
 	 }
 	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {                                         
-         
+		 if (textField5.getText().isEmpty()) {
+				 JOptionPane.showMessageDialog(null,"please fill all fields");
+			 } else if(textField5.getText().length()>9||textField5.getText().length()>9) {
+				 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
+			 }else {
+				 //enter code here
+			 }
      }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
 		 this.setVisible(false);
@@ -63,4 +62,5 @@ public class validatemodulesS extends JFrame {
 	 public static void main(String[] args) {
 		 new validatemodulesS("show module for a student");
 	 }
+	 	private javax.swing.JTextField textField5;
 }

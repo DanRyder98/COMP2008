@@ -21,14 +21,14 @@ public class addGrades extends JFrame {
 	 contentPane.add(label, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField1 = new JTextField(20);
+	 textField1 = new javax.swing.JTextField(20);
 	 contentPane.add(textField1, BorderLayout.CENTER);
 	 
 	 JLabel label2 = new JLabel ("Module Code ");
 	 contentPane.add(label2, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField2 = new JTextField(20);
+	 textField2 = new javax.swing.JTextField(20);
 	 contentPane.add(textField2, BorderLayout.CENTER);
 	 
 	 
@@ -36,14 +36,14 @@ public class addGrades extends JFrame {
 	 contentPane.add(label4, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField4 = new JTextField(20);
+	 textField4 = new javax.swing.JTextField(20);
 	 contentPane.add(textField4, BorderLayout.CENTER);
 	 
 	 JLabel label5 = new JLabel ("Registration number ");
 	 contentPane.add(label5, BorderLayout.NORTH);
 	 
 	 
-	 JTextField textField5 = new JTextField(20);
+	 textField5 = new javax.swing.JTextField(20);
 	 contentPane.add(textField5, BorderLayout.CENTER);
 	 
 	 JLabel label6 = new JLabel ("Grade ");
