@@ -31,12 +31,6 @@ public class addGrades extends JFrame {
 	 JTextField textField2 = new JTextField(20);
 	 contentPane.add(textField2, BorderLayout.CENTER);
 	 
-	 JLabel label3 = new JLabel ("Assingment name ");
-	 contentPane.add(label3, BorderLayout.NORTH);
-	
-	 
-	 JTextField textField3 = new JTextField(20);
-	 contentPane.add(textField3, BorderLayout.CENTER);
 	 
 	 JLabel label4 = new JLabel ("Student name ");
 	 contentPane.add(label4, BorderLayout.NORTH);
@@ -78,7 +72,14 @@ public class addGrades extends JFrame {
 	 setVisible(true);
 	 
 	 }
-	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {   
+		 if (textField1.getText().isEmpty() || textField2.getText().isEmpty() || textField6.getText().isEmpty() || textField4.getText().isEmpty() || textField5.getText().isEmpty()) {
+			 JOptionPane.showMessageDialog(null,"please fill all fields");
+		 } else if(textField5.getText().length()>9||textField5.getText().length()>9) {
+			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
+		 }else {
+			 //enter code here
+		 }
          
      }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -88,4 +89,9 @@ public class addGrades extends JFrame {
 	 public static void main(String[] args) {
 		 new addGrades("add grades for a student");
 	 }
+	    private javax.swing.JTextField textField1;
+	    private javax.swing.JTextField textField2;
+	    private javax.swing.JTextField textField6;
+	    private javax.swing.JTextField textField4;
+	    private javax.swing.JTextField textField5;
 }

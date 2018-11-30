@@ -18,17 +18,13 @@ public class manageSearch extends JFrame {
 	 contentPane.setLayout(new FlowLayout());
 	 
 	 
-	
-	 
-	 
-	 JTextField textField4 = new JTextField(20);
-	 contentPane.add(textField4, BorderLayout.CENTER);
+
 	 
 	 JLabel label5 = new JLabel ("Registration number ");
 	 contentPane.add(label5, BorderLayout.NORTH);
 	 
 	 
-	 textField5 = new javax.swing.JTextField();
+	 textField5 = new javax.swing.JTextField(20);
 	 contentPane.add(textField5, BorderLayout.CENTER);
 	 
 	 
