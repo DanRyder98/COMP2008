@@ -192,16 +192,9 @@ public class AddAccount extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    private void UsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
-
-    private void PasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
-
+    }// </editor-fold>        
+    
+    
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
@@ -226,10 +219,7 @@ public class AddAccount extends javax.swing.JFrame {
             StudentNumberTextField.setVisible(false);
         }
     }                                                   
-
-    private void StudentNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-        // TODO add your handling code here:
-    }                                                      
+                                                  
 
     public static void main(String args[]) {
         try {
