@@ -205,8 +205,23 @@ public class AddAccount extends javax.swing.JFrame {
     }                                                 
 
     private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
+        if (false) {
+            AccountAddedLabel.setText("Account Added");
+            AccountAddedLabel.setVisible(true);
+        }
+        else if (false) {
+            AccountAddedLabel.setText("Error");
+        }
+        
+        if (UsernameTextField.getText().isEmpty() || PasswordTextField.getText().isEmpty()) {
+			 AccountAddedLabel.setText("please fill all fields");
+                         AccountAddedLabel.setVisible(true);
+        }
+        else if (UsernameTextField.getText().length() > 30 || PasswordTextField.getText().length() > 30) {
+            AccountAddedLabel.setText("Username/Password invalid");
+            AccountAddedLabel.setVisible(true);
+        }
+    }                                              
 
     private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         String comboBoxValue = (String)AccountRoleComboBox.getSelectedItem();
