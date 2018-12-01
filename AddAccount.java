@@ -1,3 +1,4 @@
+package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -36,6 +37,7 @@ public class AddAccount extends javax.swing.JFrame {
         AddAccountButton = new javax.swing.JButton();
         StudentNumberLabel = new javax.swing.JLabel();
         StudentNumberTextField = new javax.swing.JTextField();
+        AccountAddedLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +119,8 @@ public class AddAccount extends javax.swing.JFrame {
             }
         });
 
+        AccountAddedLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,8 +159,13 @@ public class AddAccount extends javax.swing.JFrame {
                         .addGap(346, 346, 346))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddAccountButton)
-                .addGap(494, 494, 494))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(AddAccountButton)
+                        .addGap(494, 494, 494))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(AccountAddedLabel)
+                        .addGap(480, 480, 480))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,15 +195,24 @@ public class AddAccount extends javax.swing.JFrame {
                     .addComponent(StudentNumberTextField))
                 .addGap(53, 53, 53)
                 .addComponent(AddAccountButton)
-                .addGap(136, 136, 136)
+                .addGap(61, 61, 61)
+                .addComponent(AccountAddedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(BackButton)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>        
-    
-    
+    }// </editor-fold>                        
+
+    private void UsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        // TODO add your handling code here:
+    }                                                 
+
+    private void PasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        // TODO add your handling code here:
+    }                                                 
+
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
@@ -221,7 +239,7 @@ public class AddAccount extends javax.swing.JFrame {
             AccountAddedLabel.setText("Username/Password invalid");
             AccountAddedLabel.setVisible(true);
         }
-    }                                              
+    }                                                
 
     private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         String comboBoxValue = (String)AccountRoleComboBox.getSelectedItem();
@@ -234,7 +252,10 @@ public class AddAccount extends javax.swing.JFrame {
             StudentNumberTextField.setVisible(false);
         }
     }                                                   
-                                                  
+
+    private void StudentNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+        // TODO add your handling code here:
+    }                                                      
 
     public static void main(String args[]) {
         try {
@@ -263,6 +284,7 @@ public class AddAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
+    private javax.swing.JLabel AccountAddedLabel;
     private javax.swing.JComboBox<String> AccountRoleComboBox;
     private javax.swing.JButton AddAccountButton;
     private javax.swing.JLabel AddAccountLabel;
