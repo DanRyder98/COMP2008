@@ -26,48 +26,49 @@ public class AddAccount {
  */
 public static boolean addAccount(int id,String username, String password, String role)  throws SQLException {
 	
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet res = null;
-		//The try block that closes the connection if there's a runtime error.
-		try {
-	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet res = null;
+	//The try block that closes the connection if there's a runtime error.
+	try {
+        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");
 	        
-	        //Check if the username is unique
-	        pstmt = con.prepareStatement("SELECT COUNT(*) FROM Users WHERE username = ?");
-	        //Set value of ? placeholders
-	        pstmt.setString(1, username);
-	        //Fire the PreparedStatement
-	        res = pstmt.executeQuery();
-	        res.next();
-	        //Check if there's any row with that username
-	        if(res.getInt(1)!=0)
-	        	return false;
-	        pstmt.close();
+       //Check if the username is unique
+       pstmt = con.prepareStatement("SELECT COUNT(*) FROM Users WHERE username = ?");
+       //Set value of ? placeholders
+       pstmt.setString(1, username);
+	   //Fire the PreparedStatement
+	   res = pstmt.executeQuery();
+       res.next();
+	   //Check if there's any row with that username
+	   if(res.getInt(1)!=0)
+	       return false;
+	   pstmt.close();
 	        
-	        //Insert the account into the Users table
-	        pstmt = con.prepareStatement("INSERT INTO Users (id,username,password,role) VALUES (?,?,?,?)");
-	        //Set value of ? placeholders
-	        pstmt.setInt(1, id);
-	        pstmt.setString(2, username);
-	        pstmt.setString(3, password);
-	        pstmt.setString(4, role);
-	        //Fire the PreparedStatement
-	        pstmt.executeUpdate();
-	    }
-	    catch(SQLException ex) {
-	    	ex.printStackTrace();
-	    	return false;
-	    }
-		finally{
-			if(res!=null)
-				res.close();
-			if(pstmt!=null)
-				pstmt.close();
-			if(con != null)
-				con.close();
-		}
-		return true;
+	   //Insert the account into the Users table
+	    pstmt = con.prepareStatement("INSERT INTO Users (id,username,password,role) VALUES (?,?,?,?)");
+	    //Set value of ? placeholders
+	    pstmt.setInt(1, id);
+	    pstmt.setString(2, username);
+	    pstmt.setString(3, password);
+	    pstmt.setString(4, role);
+	    //Fire the PreparedStatement
+	    pstmt.executeUpdate();
+	}
+	catch(SQLException ex) {
+	    ex.printStackTrace();
+	    return false;
+	}
+    finally{
+		if(res!=null)
+			res.close();
+		if(pstmt!=null)
+			pstmt.close();
+		if(con != null)
+			con.close();
+	}
+	
+	return true;
     }
 
 }
