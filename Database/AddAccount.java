@@ -24,7 +24,7 @@ public class AddAccount {
  * @version 1.0
  * @since 12-01-2018
  */
-public static boolean addAccount(int id,String username, String password, String role)  throws SQLException {
+  public static boolean addAccount(int id,String username, String password, String role)  throws SQLException {
 	
 		Connection con = null;
 		PreparedStatement pstmt = null;
