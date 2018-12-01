@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -12,6 +13,9 @@ public class AddAccount extends javax.swing.JFrame {
      */
     public AddAccount() {
         initComponents();
+        
+        StudentNumberLabel.setVisible(false);
+        StudentNumberTextField.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -28,8 +32,10 @@ public class AddAccount extends javax.swing.JFrame {
         NewUserDetailsLabel = new javax.swing.JLabel();
         CheckUniqueButton = new javax.swing.JButton();
         PasswordLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        AccountRoleComboBox = new javax.swing.JComboBox<>();
         AddAccountButton = new javax.swing.JButton();
+        StudentNumberLabel = new javax.swing.JLabel();
+        StudentNumberTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,14 +90,30 @@ public class AddAccount extends javax.swing.JFrame {
         PasswordLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         PasswordLabel1.setText("Account Role:");
 
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Registrar", "Teacher", "Student" }));
+        AccountRoleComboBox.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        AccountRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Registrar", "Teacher", "Student" }));
+        AccountRoleComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccountRoleComboBoxActionPerformed(evt);
+            }
+        });
 
         AddAccountButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         AddAccountButton.setText("Add Account");
         AddAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddAccountButtonActionPerformed(evt);
+            }
+        });
+
+        StudentNumberLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        StudentNumberLabel.setText("Student Number:");
+
+        StudentNumberTextField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        StudentNumberTextField.setSelectionColor(new java.awt.Color(255, 102, 102));
+        StudentNumberTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StudentNumberTextFieldActionPerformed(evt);
             }
         });
 
@@ -124,8 +146,10 @@ public class AddAccount extends javax.swing.JFrame {
                                     .addComponent(PasswordLabel1)
                                     .addGap(83, 83, 83)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(AccountRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(StudentNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(StudentNumberLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CheckUniqueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(346, 346, 346))))
@@ -155,8 +179,12 @@ public class AddAccount extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95)
+                    .addComponent(AccountRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StudentNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(StudentNumberTextField))
+                .addGap(53, 53, 53)
                 .addComponent(AddAccountButton)
                 .addGap(136, 136, 136)
                 .addComponent(BackButton)
@@ -187,6 +215,22 @@ public class AddAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                                
 
+    private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        String comboBoxValue = (String)AccountRoleComboBox.getSelectedItem();
+        if (comboBoxValue.equals("Student")) {
+            StudentNumberLabel.setVisible(true);
+            StudentNumberTextField.setVisible(true);
+        }
+        else {
+            StudentNumberLabel.setVisible(false);
+            StudentNumberTextField.setVisible(false);
+        }
+    }                                                   
+
+    private void StudentNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+        // TODO add your handling code here:
+    }                                                      
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -214,6 +258,7 @@ public class AddAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
+    private javax.swing.JComboBox<String> AccountRoleComboBox;
     private javax.swing.JButton AddAccountButton;
     private javax.swing.JLabel AddAccountLabel;
     private javax.swing.JLabel AdminLabel;
@@ -223,8 +268,9 @@ public class AddAccount extends javax.swing.JFrame {
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JLabel PasswordLabel1;
     private javax.swing.JTextField PasswordTextField;
+    private javax.swing.JLabel StudentNumberLabel;
+    private javax.swing.JTextField StudentNumberTextField;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
-    private javax.swing.JComboBox<String> jComboBox1;
     // End of variables declaration                   
 }
