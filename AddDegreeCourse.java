@@ -1,8 +1,10 @@
-
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
- * @author danie
+ * @author Daniel Ryder
  */
 public class AddDegreeCourse extends javax.swing.JFrame {
 
@@ -28,7 +30,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         FullNameLabel = new javax.swing.JLabel();
         FullNameTextField = new javax.swing.JTextField();
         AbbreviatedNameLabel1 = new javax.swing.JLabel();
-        AbbreviatedNameTextField1 = new javax.swing.JTextField();
+        AbbreviatedNameTextField = new javax.swing.JTextField();
         DepartmentsLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DepartmentList = new javax.swing.JList<>();
@@ -36,6 +38,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         LeadDepartmentList = new javax.swing.JList<>();
         AddDegreeCourseButton = new javax.swing.JButton();
+        OutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,15 +70,16 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         AbbreviatedNameLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         AbbreviatedNameLabel1.setText("Abbreviated Name:");
 
-        AbbreviatedNameTextField1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        AbbreviatedNameTextField1.addActionListener(new java.awt.event.ActionListener() {
+        AbbreviatedNameTextField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        AbbreviatedNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AbbreviatedNameTextField1ActionPerformed(evt);
+                AbbreviatedNameTextFieldActionPerformed(evt);
             }
         });
 
         DepartmentsLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentsLabel.setText("Department(s):");
+        DepartmentsLabel.setToolTipText("Hold down CTRL to select multiple");
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
@@ -87,6 +91,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         LeadDepartmentLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LeadDepartmentLabel.setText("Lead Department:");
+        LeadDepartmentLabel.setToolTipText("Hold down CTRL to select multiple");
 
         LeadDepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LeadDepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
@@ -94,6 +99,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        LeadDepartmentList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(LeadDepartmentList);
 
         AddDegreeCourseButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -103,6 +109,9 @@ public class AddDegreeCourse extends javax.swing.JFrame {
                 AddDegreeCourseButtonActionPerformed(evt);
             }
         });
+
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        OutputLabel.setToolTipText("Hold down CTRL to select multiple");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,7 +138,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
                                     .addComponent(LeadDepartmentLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AbbreviatedNameTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AbbreviatedNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -139,6 +148,10 @@ public class AddDegreeCourse extends javax.swing.JFrame {
                         .addGap(371, 371, 371)
                         .addComponent(BackButton)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(OutputLabel)
+                .addGap(430, 430, 430))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,16 +169,21 @@ public class AddDegreeCourse extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AbbreviatedNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(AbbreviatedNameTextField1))
+                            .addComponent(AbbreviatedNameTextField))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(DepartmentsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(DepartmentsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(LeadDepartmentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(159, 159, 159)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LeadDepartmentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(159, 159, 159))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(OutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(61, 61, 61)))
                         .addComponent(AddDegreeCourseButton)
                         .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -182,17 +200,37 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         new HomePageAdministrator().setVisible(true);
     }                                          
 
+    private void CheckErrors() {
+        OutputLabel.setText("");
+        if (FullNameTextField.getText().isEmpty() || AbbreviatedNameTextField.getText().isEmpty()) {
+            OutputLabel.setText("please fill all fields");
+        }
+        else if (FullNameTextField.getText().length() > 100) {
+            
+            OutputLabel.setText("Full Name is too long");
+        }
+        else if (AbbreviatedNameTextField.getText().length() > 100) {
+            OutputLabel.setText(OutputLabel.getText() + "Abbreviated Name is too long");
+        }
+    }
+    
     private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        // TODO add your handling code here:
+        CheckErrors();
+        
+        String fullname = FullNameTextField.getText();
+        String abbreviatedName = AbbreviatedNameTextField.getText();
+        Object[] departments = DepartmentList.getSelectedValues();
+        String leadDepartment = (String)LeadDepartmentList.getSelectedValue();
+        String query = "INSERT INTO Degree (name, degreeCode) VALUES (fullname, abbreviatedName)";
     }                                                     
 
     private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
     }                                                 
 
-    private void AbbreviatedNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                          
+    private void AbbreviatedNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         // TODO add your handling code here:
-    }                                                         
+    }                                                        
 
     /**
      * @param args the command line arguments
@@ -231,7 +269,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JLabel AbbreviatedNameLabel1;
-    private javax.swing.JTextField AbbreviatedNameTextField1;
+    private javax.swing.JTextField AbbreviatedNameTextField;
     private javax.swing.JButton AddDegreeCourseButton;
     private javax.swing.JLabel AddDegreeCourseLabel;
     private javax.swing.JLabel AdminLabel;
@@ -242,6 +280,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
     private javax.swing.JTextField FullNameTextField;
     private javax.swing.JLabel LeadDepartmentLabel;
     private javax.swing.JList<String> LeadDepartmentList;
+    private javax.swing.JLabel OutputLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration                   
