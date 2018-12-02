@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -31,7 +30,6 @@ public class AddAccount extends javax.swing.JFrame {
         PasswordTextField = new javax.swing.JTextField();
         BackButton = new javax.swing.JButton();
         NewUserDetailsLabel = new javax.swing.JLabel();
-        CheckUniqueButton = new javax.swing.JButton();
         PasswordLabel1 = new javax.swing.JLabel();
         AccountRoleComboBox = new javax.swing.JComboBox<>();
         AddAccountButton = new javax.swing.JButton();
@@ -80,14 +78,6 @@ public class AddAccount extends javax.swing.JFrame {
 
         NewUserDetailsLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         NewUserDetailsLabel.setText("New User Details:");
-
-        CheckUniqueButton.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        CheckUniqueButton.setText("Check Unique");
-        CheckUniqueButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckUniqueButtonActionPerformed(evt);
-            }
-        });
 
         PasswordLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         PasswordLabel1.setText("Account Role:");
@@ -154,9 +144,7 @@ public class AddAccount extends javax.swing.JFrame {
                                         .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(StudentNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(StudentNumberLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CheckUniqueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(346, 346, 346))))
+                        .addGap(346, 561, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,11 +164,10 @@ public class AddAccount extends javax.swing.JFrame {
                 .addComponent(AddAccountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(39, 39, 39)
                 .addComponent(NewUserDetailsLabel)
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UsernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(UsernameTextField)
-                    .addComponent(CheckUniqueButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(UsernameTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,12 +204,8 @@ public class AddAccount extends javax.swing.JFrame {
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
     }                                          
-
-    private void CheckUniqueButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // Change button to green if unique or red otherwise
-    }                                                 
-
-    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    
+    private void CheckErrors() {
         if (false) {
             AccountAddedLabel.setText("Account Added");
             AccountAddedLabel.setVisible(true);
@@ -233,12 +216,19 @@ public class AddAccount extends javax.swing.JFrame {
         
         if (UsernameTextField.getText().isEmpty() || PasswordTextField.getText().isEmpty()) {
 			 AccountAddedLabel.setText("please fill all fields");
-                         AccountAddedLabel.setVisible(true);
         }
-        else if (UsernameTextField.getText().length() > 30 || PasswordTextField.getText().length() > 30) {
+        else if (UsernameTextField.getText().length() > 45 || PasswordTextField.getText().length() > 45) {
             AccountAddedLabel.setText("Username/Password invalid");
-            AccountAddedLabel.setVisible(true);
         }
+    }
+    
+    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        CheckErrors();
+        
+        String username = UsernameTextField.getText();
+        String password = PasswordTextField.getText();
+        String role = (String)AccountRoleComboBox.getSelectedItem();
+        String query = "INSERT INTO User (username, password, role) VALUES (username, password, role)";
     }                                                
 
     private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                    
@@ -290,7 +280,6 @@ public class AddAccount extends javax.swing.JFrame {
     private javax.swing.JLabel AddAccountLabel;
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
-    private javax.swing.JButton CheckUniqueButton;
     private javax.swing.JLabel NewUserDetailsLabel;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JLabel PasswordLabel1;
