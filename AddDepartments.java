@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -27,6 +28,7 @@ public class AddDepartments extends javax.swing.JFrame {
         FullNameTextField = new javax.swing.JTextField();
         AbbreviatedCodeTextField = new javax.swing.JTextField();
         AddDepartmentButton = new javax.swing.JButton();
+        OutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +69,9 @@ public class AddDepartments extends javax.swing.JFrame {
             }
         });
 
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        OutputLabel.setToolTipText("A three-letter code");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +102,9 @@ public class AddDepartments extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(AddDepartmentButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(OutputLabel)
+                    .addComponent(AddDepartmentButton))
                 .addGap(445, 445, 445))
         );
         layout.setVerticalGroup(
@@ -117,7 +124,9 @@ public class AddDepartments extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AbbreviatedCodeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AbbreviatedCodeTextField))
-                .addGap(115, 115, 115)
+                .addGap(54, 54, 54)
+                .addComponent(OutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(AddDepartmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(116, 116, 116)
                 .addComponent(BackButton)
@@ -132,8 +141,24 @@ public class AddDepartments extends javax.swing.JFrame {
         new HomePageAdministrator().setVisible(true);
     }                                          
 
+    private void CheckErrors() {
+        if (FullNameTextField.getText().isEmpty() || AbbreviatedCodeTextField.getText().isEmpty()) {
+			 OutputLabel.setText("please fill all fields");
+        }
+        else if (FullNameTextField.getText().length() > 100) {
+            OutputLabel.setText("Full Name is too long");
+        }
+        else if (AbbreviatedCodeTextField.getText().length() > 100) {
+            OutputLabel.setText("Abbreviated Name is too long");
+        }
+    }
+    
     private void AddDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
+        CheckErrors();
+        
+        String fullname = FullNameTextField.getText();
+        String abbreviatedCode = AbbreviatedCodeTextField.getText();
+        String query = "INSERT INTO Department (departmentCode, departmentName) VALUES (abbreviatedCode, fullname)";
     }                                                   
 
     public static void main(String args[]) {
@@ -172,5 +197,6 @@ public class AddDepartments extends javax.swing.JFrame {
     private javax.swing.JLabel DepartmentDetailsLabel;
     private javax.swing.JLabel FullNameLabel;
     private javax.swing.JTextField FullNameTextField;
+    private javax.swing.JLabel OutputLabel;
     // End of variables declaration                   
 }
