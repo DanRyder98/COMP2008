@@ -1,8 +1,10 @@
-
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
- * @author danie
+ * @author Daniel Ryder
  */
 public class AddModulesOverall extends javax.swing.JFrame {
 
@@ -27,8 +29,8 @@ public class AddModulesOverall extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         FullNameLabel = new javax.swing.JLabel();
         FullNameTextField = new javax.swing.JTextField();
-        AbbreviatedNameLabel1 = new javax.swing.JLabel();
-        AbbreviatedNameTextField1 = new javax.swing.JTextField();
+        AbbreviatedNameLabel = new javax.swing.JLabel();
+        AbbreviatedNameTextField = new javax.swing.JTextField();
         DepartmentsLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DepartmentList = new javax.swing.JList<>();
@@ -39,6 +41,8 @@ public class AddModulesOverall extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         LevelList = new javax.swing.JList<>();
         AddModuleButton = new javax.swing.JButton();
+        OutpuLabel = new javax.swing.JLabel();
+        OutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,13 +71,13 @@ public class AddModulesOverall extends javax.swing.JFrame {
             }
         });
 
-        AbbreviatedNameLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        AbbreviatedNameLabel1.setText("Abbreviated Name:");
+        AbbreviatedNameLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        AbbreviatedNameLabel.setText("Abbreviated Name:");
 
-        AbbreviatedNameTextField1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        AbbreviatedNameTextField1.addActionListener(new java.awt.event.ActionListener() {
+        AbbreviatedNameTextField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        AbbreviatedNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AbbreviatedNameTextField1ActionPerformed(evt);
+                AbbreviatedNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -97,6 +101,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        TeachingTimeList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(TeachingTimeList);
 
         LevelLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -108,6 +113,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        LevelList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(LevelList);
 
         AddModuleButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -117,6 +123,10 @@ public class AddModulesOverall extends javax.swing.JFrame {
                 AddModuleButtonActionPerformed(evt);
             }
         });
+
+        OutpuLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,10 +147,6 @@ public class AddModulesOverall extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(LevelLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(TeachingTimeLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,16 +156,24 @@ public class AddModulesOverall extends javax.swing.JFrame {
                                 .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AbbreviatedNameLabel1)
+                                    .addComponent(AbbreviatedNameLabel)
                                     .addComponent(DepartmentsLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(AbbreviatedNameTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(AbbreviatedNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LevelLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(OutpuLabel)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(305, 305, 305))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddModuleButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(OutputLabel)
+                    .addComponent(AddModuleButton))
                 .addGap(479, 479, 479))
         );
         layout.setVerticalGroup(
@@ -175,21 +189,28 @@ public class AddModulesOverall extends javax.swing.JFrame {
                     .addComponent(FullNameTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AbbreviatedNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AbbreviatedNameTextField1))
+                    .addComponent(AbbreviatedNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AbbreviatedNameTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(DepartmentsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DepartmentsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(TeachingTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TeachingTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(LevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(71, 71, 71)
+                    .addComponent(LevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(OutpuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(OutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AddModuleButton)
                 .addGap(37, 37, 37)
                 .addComponent(BackButton)
@@ -208,12 +229,30 @@ public class AddModulesOverall extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                                 
 
-    private void AbbreviatedNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                          
+    private void AbbreviatedNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         // TODO add your handling code here:
-    }                                                         
+    }                                                        
 
+    private void CheckErrors() {
+        if (FullNameTextField.getText().isEmpty() || AbbreviatedNameTextField.getText().isEmpty()) {
+			 OutputLabel.setText("please fill all fields");
+        }
+        else if (FullNameTextField.getText().length() > 100) {
+            OutputLabel.setText("Full Name is too long");
+        }
+        else if (AbbreviatedNameTextField.getText().length() > 100) {
+            OutputLabel.setText("Abbreviated Name is too long");
+        }
+    }
+    
     private void AddModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        CheckErrors();
+        
+        String fullname = FullNameTextField.getText();
+        String abbreviatedName = AbbreviatedNameTextField.getText();
+        Object[] departments = DepartmentList.getSelectedValues();
+        String teachingTime = (String)TeachingTimeList.getSelectedValue();
+        String level = (String)LevelList.getSelectedValue();
     }                                               
 
     /**
@@ -252,8 +291,8 @@ public class AddModulesOverall extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel AbbreviatedNameLabel1;
-    private javax.swing.JTextField AbbreviatedNameTextField1;
+    private javax.swing.JLabel AbbreviatedNameLabel;
+    private javax.swing.JTextField AbbreviatedNameTextField;
     private javax.swing.JButton AddModuleButton;
     private javax.swing.JLabel AddModulesLabel;
     private javax.swing.JLabel AdminLabel;
@@ -264,6 +303,8 @@ public class AddModulesOverall extends javax.swing.JFrame {
     private javax.swing.JTextField FullNameTextField;
     private javax.swing.JLabel LevelLabel;
     private javax.swing.JList<String> LevelList;
+    private javax.swing.JLabel OutpuLabel;
+    private javax.swing.JLabel OutputLabel;
     private javax.swing.JLabel TeachingTimeLabel;
     private javax.swing.JList<String> TeachingTimeList;
     private javax.swing.JScrollPane jScrollPane1;
