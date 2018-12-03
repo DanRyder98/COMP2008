@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that interacts with the Users table and any linker table associated with it.
@@ -101,6 +103,134 @@ public static boolean addAccount(int id,String username, String password, String
 			
 		}
 		return true;
+    }
+/**
+ * Function that, when given an id, returns an user from the Users table that had that id.
+ * 
+ * @param id
+ * @return boolean Tells if the removing of the account was successfull. Even if the account isn't in the database it still returns true. Could
+ * Change that.
+ */
+    public static boolean removeAccount(int id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	
+	        
+	        pstmt = con.prepareStatement("DELETE FROM Users WHERE id = ?");
+	        pstmt.setInt(1, id);
+	        pstmt.executeUpdate();
+	        
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    	return false;
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+		}
+		return true;
+    }
+    /**
+     * 
+     * @return A list of all the users in the Users table
+     */
+    public static List<User> getUsers() {
+    	
+    	Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		List<User> l = new ArrayList<>();// ArrayList whose index represents a row in the Users table
+		
+		//The try block that closes the connection,PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");
+	        
+	        //Queries the Users table for a ResultSet of all the users.
+	        pstmt = con.prepareStatement("SELECT * FROM Users;");
+	        res = pstmt.executeQuery();
+	        
+	        //Iterate over all rows in the Users table
+	       	while (res.next()){
+	       		int id = res.getInt("id");
+	       		String username = res.getString("username");
+	       		String password = res.getString("password");
+	       		String role = res.getString("role");
+        		l.add(new User(id,username,password,role));
+	        }
+	       	
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+		}
+		return l;
+		
+    }
+    /**
+     * 
+     * @return An array of strings that contain each user id in the Users table
+     */
+    public static String[] getUserIdArray(){
+    	
+    	List<User> l = getUsers();
+    	String[] userArray = new String[l.size()];
+    	//counter
+    	int c= 0;
+    	for(User u : l) {
+    		userArray[c] = u.id + "";
+    		c++;
+    	}
+    	return userArray;
     }
 
 }
