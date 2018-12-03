@@ -1,8 +1,9 @@
-
-
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 /**
  *
- * @author danie
+ * @author Daniel Ryder
  */
 public class RemoveDegreeCourse extends javax.swing.JFrame {
 
@@ -165,7 +166,9 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
     }                                          
 
     private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        // TODO add your handling code here:
+        Object[] existingCourses = ExistingCoursesList.getSelectedValues();
+        Object[] departments = DepartmentList.getSelectedValues();
+        Object[] newLeadDepartment = NewLeadDepartmentList.getSelectedValues();
     }                                                     
 
     /**
