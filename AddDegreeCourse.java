@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -17,7 +16,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         AdminLabel = new javax.swing.JLabel();
@@ -35,6 +34,9 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         LeadDepartmentList = new javax.swing.JList<>();
         AddDegreeCourseButton = new javax.swing.JButton();
         OutputLabel = new javax.swing.JLabel();
+        LevelLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        LevelList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +111,19 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         OutputLabel.setToolTipText("Hold down CTRL to select multiple");
 
+        LevelLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        LevelLabel.setText("Level:");
+        LevelLabel.setToolTipText("Hold down CTRL to select multiple");
+
+        LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        LevelList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        LevelList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(LevelList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,12 +146,14 @@ public class AddDegreeCourse extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(AbbreviatedNameLabel1)
                                     .addComponent(DepartmentsLabel)
-                                    .addComponent(LeadDepartmentLabel))
+                                    .addComponent(LeadDepartmentLabel)
+                                    .addComponent(LevelLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(AbbreviatedNameTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -174,10 +191,14 @@ public class AddDegreeCourse extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LeadDepartmentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(159, 159, 159))
+                                .addGap(18, 18, 18)
+                                .addComponent(LevelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(118, 118, 118))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(OutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(61, 61, 61)))
                         .addComponent(AddDegreeCourseButton)
@@ -189,12 +210,12 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
         new HomePageAdministrator().setVisible(true);
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }                                          
 
     private void CheckErrors() {
         OutputLabel.setText("");
@@ -210,7 +231,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         }
     }
     
-    private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDegreeCourseButtonActionPerformed
+    private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         CheckErrors();
         
         String fullname = FullNameTextField.getText();
@@ -225,25 +246,17 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         System.arraycopy(leadDepartmentObject, 0, leadDepartmentString, 0, leadDepartmentObject.length);
         
         String query = "INSERT INTO Degree (name, degreeCode) VALUES (fullname, abbreviatedName)";
-    }//GEN-LAST:event_AddDegreeCourseButtonActionPerformed
+    }                                                     
 
-    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameTextFieldActionPerformed
+    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
-    }//GEN-LAST:event_FullNameTextFieldActionPerformed
+    }                                                 
 
-    private void AbbreviatedNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbbreviatedNameTextFieldActionPerformed
+    private void AbbreviatedNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         // TODO add your handling code here:
-    }//GEN-LAST:event_AbbreviatedNameTextFieldActionPerformed
+    }                                                        
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -260,9 +273,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AddDegreeCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddDegreeCourse().setVisible(true);
@@ -270,7 +281,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel AbbreviatedNameLabel1;
     private javax.swing.JTextField AbbreviatedNameTextField;
     private javax.swing.JButton AddDegreeCourseButton;
@@ -283,8 +294,11 @@ public class AddDegreeCourse extends javax.swing.JFrame {
     private javax.swing.JTextField FullNameTextField;
     private javax.swing.JLabel LeadDepartmentLabel;
     private javax.swing.JList<String> LeadDepartmentList;
+    private javax.swing.JLabel LevelLabel;
+    private javax.swing.JList<String> LevelList;
     private javax.swing.JLabel OutputLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JScrollPane jScrollPane3;
+    // End of variables declaration                   
 }
