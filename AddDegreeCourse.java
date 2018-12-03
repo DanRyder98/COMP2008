@@ -219,8 +219,15 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         
         String fullname = FullNameTextField.getText();
         String abbreviatedName = AbbreviatedNameTextField.getText();
-        Object[] departments = DepartmentList.getSelectedValues();
-        String leadDepartment = (String)LeadDepartmentList.getSelectedValue();
+        
+        Object[] departmentsObject = DepartmentList.getSelectedValues();
+        String[] departmentsString = new String[departmentsObject.length];
+        System.arraycopy(departmentsObject, 0, departmentsString, 0, departmentsObject.length);
+        
+        Object[] leadDepartmentObject = LeadDepartmentList.getSelectedValues();
+        String[] leadDepartmentString = new String[leadDepartmentObject.length];
+        System.arraycopy(leadDepartmentObject, 0, leadDepartmentString, 0, leadDepartmentObject.length);
+        
         String query = "INSERT INTO Degree (name, degreeCode) VALUES (fullname, abbreviatedName)";
     }                                                     
 
