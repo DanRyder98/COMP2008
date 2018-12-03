@@ -1,8 +1,9 @@
-
-
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 /**
  *
- * @author danie
+ * @author Daniel Ryder
  */
 public class RemoveDepartments extends javax.swing.JFrame {
 
@@ -34,6 +35,7 @@ public class RemoveDepartments extends javax.swing.JFrame {
         RemoveDepartmentLabel.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         RemoveDepartmentLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         RemoveDepartmentLabel.setText("Remove Department");
+        RemoveDepartmentLabel.setToolTipText("Hold down control to select multiple");
 
         AdminLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         AdminLabel.setText("Administrator");
@@ -111,7 +113,7 @@ public class RemoveDepartments extends javax.swing.JFrame {
     }                                          
 
     private void RemoveDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-        // TODO add your handling code here:
+        Object[] departments = DepartmentList.getSelectedValues();
     }                                                      
 
     /**
