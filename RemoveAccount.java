@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-
+import java.sql.*;
 /**
  *
  * @author Daniel Ryder
@@ -24,7 +24,7 @@ public class RemoveAccount extends javax.swing.JFrame {
         NewUserDetailsLabel = new javax.swing.JLabel();
         UsernameLabel = new javax.swing.JLabel();
         UsernameTextField = new javax.swing.JTextField();
-        UpdateLabel = new javax.swing.JLabel();
+        OutputLabel = new javax.swing.JLabel();
         RemoveUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,9 +58,8 @@ public class RemoveAccount extends javax.swing.JFrame {
             }
         });
 
-        UpdateLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        UpdateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        UpdateLabel.setText("User removed/not found");
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        OutputLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         RemoveUser.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         RemoveUser.setText("Remove User");
@@ -95,7 +94,7 @@ public class RemoveAccount extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(UpdateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(OutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(RemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -117,7 +116,7 @@ public class RemoveAccount extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(RemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(47, 47, 47)
-                .addComponent(UpdateLabel)
+                .addComponent(OutputLabel)
                 .addGap(94, 94, 94)
                 .addComponent(BackButton)
                 .addContainerGap())
@@ -135,8 +134,20 @@ public class RemoveAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                                 
 
+    private void CheckErrors() {
+        if (UsernameTextField.getText().isEmpty()) {
+			 OutputLabel.setText("please fill all fields");
+        }
+        else if (UsernameTextField.getText().length() > 45) {
+            OutputLabel.setText("Username is invalid");
+        }
+    }
+    
     private void RemoveUserActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        CheckErrors();
+        
+        String username = UsernameTextField.getText();
+        String query = "DELETE FROM User WHERE username=" + username;
     }                                          
 
     /**
@@ -173,8 +184,8 @@ public class RemoveAccount extends javax.swing.JFrame {
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel NewUserDetailsLabel;
+    private javax.swing.JLabel OutputLabel;
     private javax.swing.JButton RemoveUser;
-    private javax.swing.JLabel UpdateLabel;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
     // End of variables declaration                   
