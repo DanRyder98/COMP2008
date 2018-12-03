@@ -1,3 +1,4 @@
+package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -15,7 +16,7 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         BackButton = new javax.swing.JButton();
@@ -107,16 +108,16 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
         new HomePageAdministrator().setVisible(true);
-    }                                          
+    }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void RemoveModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+    private void RemoveModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveModuleButtonActionPerformed
         Object[] moduleCodes = ModuleCodesList.getSelectedValues();
-    }                                                  
+    }//GEN-LAST:event_RemoveModuleButtonActionPerformed
 
     
     public static void main(String args[]) {
@@ -145,7 +146,7 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel ModulesCodesLabel;
@@ -153,5 +154,5 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
     private javax.swing.JButton RemoveModuleButton;
     private javax.swing.JLabel RemoveModulesLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

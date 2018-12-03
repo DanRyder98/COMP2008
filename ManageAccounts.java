@@ -1,5 +1,4 @@
-import java.awt.*;
-import javax.swing.*;
+package Admin;
 
 /**
  *
@@ -15,7 +14,7 @@ public class ManageAccounts extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AdminLabel = new javax.swing.JLabel();
@@ -92,21 +91,22 @@ public class ManageAccounts extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountButtonActionPerformed
         this.setVisible(false);
         new AddAccount().setVisible(true);
-    }                                                
+    }//GEN-LAST:event_AddAccountButtonActionPerformed
 
-    private void RemoveAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
-    }                                                   
+    private void RemoveAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveAccountButtonActionPerformed
+        this.setVisible(false);
+        new RemoveAccount().setVisible(true);
+    }//GEN-LAST:event_RemoveAccountButtonActionPerformed
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
         new HomePageAdministrator().setVisible(true);
-    }                                          
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -134,11 +134,11 @@ public class ManageAccounts extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddAccountButton;
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel ManageAccountsLabel;
     private javax.swing.JButton RemoveAccountButton;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

@@ -1,3 +1,4 @@
+package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -19,7 +20,7 @@ public class AddAccount extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AddAccountLabel = new javax.swing.JLabel();
@@ -190,20 +191,20 @@ public class AddAccount extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void UsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void UsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                 
+    }//GEN-LAST:event_UsernameTextFieldActionPerformed
 
-    private void PasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void PasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                 
+    }//GEN-LAST:event_PasswordTextFieldActionPerformed
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
-    }                                          
+    }//GEN-LAST:event_BackButtonActionPerformed
     
     private void CheckErrors() {
         if (false) {
@@ -222,16 +223,17 @@ public class AddAccount extends javax.swing.JFrame {
         }
     }
     
-    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountButtonActionPerformed
         CheckErrors();
         
         String username = UsernameTextField.getText();
         String password = PasswordTextField.getText();
         String role = (String)AccountRoleComboBox.getSelectedItem();
+        Integer studentNumber = Integer.parseInt(StudentNumberTextField.getText());
         String query = "INSERT INTO User (username, password, role) VALUES (username, password, role)";
-    }                                                
+    }//GEN-LAST:event_AddAccountButtonActionPerformed
 
-    private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountRoleComboBoxActionPerformed
         String comboBoxValue = (String)AccountRoleComboBox.getSelectedItem();
         if (comboBoxValue.equals("Student")) {
             StudentNumberLabel.setVisible(true);
@@ -241,11 +243,11 @@ public class AddAccount extends javax.swing.JFrame {
             StudentNumberLabel.setVisible(false);
             StudentNumberTextField.setVisible(false);
         }
-    }                                                   
+    }//GEN-LAST:event_AccountRoleComboBoxActionPerformed
 
-    private void StudentNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+    private void StudentNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentNumberTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                      
+    }//GEN-LAST:event_StudentNumberTextFieldActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -273,7 +275,7 @@ public class AddAccount extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AccountAddedLabel;
     private javax.swing.JComboBox<String> AccountRoleComboBox;
     private javax.swing.JButton AddAccountButton;
@@ -288,5 +290,5 @@ public class AddAccount extends javax.swing.JFrame {
     private javax.swing.JTextField StudentNumberTextField;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

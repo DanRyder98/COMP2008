@@ -1,3 +1,4 @@
+package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -15,7 +16,7 @@ public class RemoveAccount extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AddAccountLabel = new javax.swing.JLabel();
@@ -123,16 +124,16 @@ public class RemoveAccount extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
-    }                                          
+    }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void UsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void UsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                 
+    }//GEN-LAST:event_UsernameTextFieldActionPerformed
 
     private void CheckErrors() {
         if (UsernameTextField.getText().isEmpty()) {
@@ -143,12 +144,12 @@ public class RemoveAccount extends javax.swing.JFrame {
         }
     }
     
-    private void RemoveUserActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void RemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveUserActionPerformed
         CheckErrors();
         
         String username = UsernameTextField.getText();
         String query = "DELETE FROM User WHERE username=" + username;
-    }                                          
+    }//GEN-LAST:event_RemoveUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +180,7 @@ public class RemoveAccount extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AddAccountLabel;
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
@@ -188,5 +189,5 @@ public class RemoveAccount extends javax.swing.JFrame {
     private javax.swing.JButton RemoveUser;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JTextField UsernameTextField;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,4 @@
-import java.awt.*;
-import javax.swing.*;
+package Admin;
 
 /**
  *
@@ -15,7 +14,7 @@ public class HomePageAdministrator extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         ManageAccountsButton = new javax.swing.JButton();
@@ -157,47 +156,47 @@ public class HomePageAdministrator extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void ManageAccountsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+    private void ManageAccountsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageAccountsButtonActionPerformed
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
-    }                                                    
+    }//GEN-LAST:event_ManageAccountsButtonActionPerformed
 
-    private void AddDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+    private void AddDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDepartmentsButtonActionPerformed
         this.setVisible(false);
         new AddDepartments().setVisible(true);
-    }                                                    
+    }//GEN-LAST:event_AddDepartmentsButtonActionPerformed
 
-    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         this.setVisible(false);
         new LoggingIn().setVisible(true);
-    }                                            
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
-    private void RemoveDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
+    private void RemoveDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveDepartmentsButtonActionPerformed
         this.setVisible(false);
         new RemoveDepartments().setVisible(true);
-    }                                                       
+    }//GEN-LAST:event_RemoveDepartmentsButtonActionPerformed
 
-    private void AddDegreeCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+    private void AddDegreeCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDegreeCoursesButtonActionPerformed
         this.setVisible(false);
         new AddDegreeCourse().setVisible(true);
-    }                                                      
+    }//GEN-LAST:event_AddDegreeCoursesButtonActionPerformed
 
-    private void RemoveDegreeCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                          
+    private void RemoveDegreeCoursesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveDegreeCoursesButtonActionPerformed
         this.setVisible(false);
         new RemoveDegreeCourse().setVisible(true);
-    }                                                         
+    }//GEN-LAST:event_RemoveDegreeCoursesButtonActionPerformed
 
-    private void AddModulesOverallButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
+    private void AddModulesOverallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddModulesOverallButtonActionPerformed
         this.setVisible(false);
         new AddModulesOverall().setVisible(true);
-    }                                                       
+    }//GEN-LAST:event_AddModulesOverallButtonActionPerformed
 
-    private void RemoveModulesOverallButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                           
+    private void RemoveModulesOverallButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveModulesOverallButtonActionPerformed
         this.setVisible(false);
         new RemoveModulesOverall().setVisible(true);
-    }                                                          
+    }//GEN-LAST:event_RemoveModulesOverallButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -226,7 +225,7 @@ public class HomePageAdministrator extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddDegreeCoursesButton;
     private javax.swing.JButton AddDepartmentsButton;
     private javax.swing.JButton AddModulesOverallButton;
@@ -237,5 +236,5 @@ public class HomePageAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton RemoveDepartmentsButton;
     private javax.swing.JButton RemoveModulesOverallButton;
     private javax.swing.JLabel WelcomeLabel;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

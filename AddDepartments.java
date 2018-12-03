@@ -1,3 +1,4 @@
+package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -16,7 +17,7 @@ public class AddDepartments extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AdminLabel = new javax.swing.JLabel();
@@ -134,12 +135,12 @@ public class AddDepartments extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
         new HomePageAdministrator().setVisible(true);
-    }                                          
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     private void CheckErrors() {
         if (FullNameTextField.getText().isEmpty() || AbbreviatedCodeTextField.getText().isEmpty()) {
@@ -153,13 +154,13 @@ public class AddDepartments extends javax.swing.JFrame {
         }
     }
     
-    private void AddDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void AddDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDepartmentButtonActionPerformed
         CheckErrors();
         
         String fullname = FullNameTextField.getText();
         String abbreviatedCode = AbbreviatedCodeTextField.getText();
         String query = "INSERT INTO Department (departmentCode, departmentName) VALUES (abbreviatedCode, fullname)";
-    }                                                   
+    }//GEN-LAST:event_AddDepartmentButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -187,7 +188,7 @@ public class AddDepartments extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AbbreviatedCodeLabel;
     private javax.swing.JTextField AbbreviatedCodeTextField;
     private javax.swing.JButton AddDepartmentButton;
@@ -198,5 +199,5 @@ public class AddDepartments extends javax.swing.JFrame {
     private javax.swing.JLabel FullNameLabel;
     private javax.swing.JTextField FullNameTextField;
     private javax.swing.JLabel OutputLabel;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
