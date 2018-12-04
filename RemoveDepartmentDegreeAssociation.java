@@ -1,5 +1,6 @@
 package Admin;
 import database.DegreeController;
+import database.DepartmentController;
 /**
  *
  * @author Daniel Ryder
@@ -42,7 +43,7 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

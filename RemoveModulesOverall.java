@@ -56,7 +56,7 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
 
         ModulesNamesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ModulesNamesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = ModuleController.getModuleNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

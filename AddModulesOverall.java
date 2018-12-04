@@ -1,4 +1,5 @@
 package Admin;
+import database.DepartmentController;
 import database.ModuleController;
 
 /**
@@ -76,7 +77,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -87,7 +88,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
 
         TeachingTimeList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         TeachingTimeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Autunm", "Spring", "Summer", "All-year" };
+            String[] strings = { "Autumn", "Spring", "Summer", "Year Long" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
