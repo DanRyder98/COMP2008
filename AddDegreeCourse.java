@@ -85,7 +85,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -97,7 +97,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         LeadDepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LeadDepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -121,7 +121,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "1", "2", "3", "4", "5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
