@@ -264,9 +264,10 @@ public class AddModulesOverall extends javax.swing.JFrame {
         Object[] departmentsObject = DepartmentList.getSelectedValues();
         Object[] teachingTimeObject = TeachingTimeList.getSelectedValues();
         String credits = (String)CreditsComboBox.getSelectedItem();
+        int icredits = Integer.parseInt(credits);
         
         if (CheckErrors()) {
-            CheckSuccess(ModuleController.addModule(abbreviatedName, fullname, credits, (String) teachingTimeObject[0], (String) departmentsObject[0]));
+            CheckSuccess(ModuleController.addModule(abbreviatedName, fullname, icredits, (String) teachingTimeObject[0], (String) departmentsObject[0]));
         }
     }//GEN-LAST:event_AddModuleButtonActionPerformed
 
