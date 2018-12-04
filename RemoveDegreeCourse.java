@@ -1,6 +1,10 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.DegreeController;
+import database.DepartmentController;
+
 import java.sql.*;
 /**
  *
@@ -64,7 +68,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -86,7 +90,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
 
         ExistingCoursesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ExistingCoursesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DegreeController.getDegreeNameAsString();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -183,8 +187,10 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         Object[] departments = DepartmentList.getSelectedValues();
         Object[] newLeadDepartment = NewLeadDepartmentList.getSelectedValues();
         
+        
+        
         if (CheckErrors()) {
-            //CheckSuccess(INSERT SQL HERE);
+            DegreeController.removeDegreeDepartmentAssociation((String) existingCourses[0], departments);
         }
     }//GEN-LAST:event_AddDegreeCourseButtonActionPerformed
 

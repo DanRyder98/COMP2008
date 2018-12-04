@@ -1,18 +1,15 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
 
 /**
  *
  * @author Daniel Ryder
  */
-public class TableExample extends javax.swing.JFrame {
+public class ExampleTable extends javax.swing.JFrame {
 
     /**
      * Creates new form TableExample
      */
-    public TableExample() {
+    public ExampleTable() {
         initComponents();
     }
 

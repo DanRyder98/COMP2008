@@ -2,6 +2,7 @@ package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
+import database.*;
 
 /**
  *
