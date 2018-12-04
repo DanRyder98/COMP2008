@@ -1,9 +1,6 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
-
-import database.ModuleController;
-
 import java.sql.*;
 
 /**
@@ -36,6 +33,9 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         ModuleList = new javax.swing.JList<>();
         OutputLabel = new javax.swing.JLabel();
+        CoreModuleLabel = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        CoreModuleList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,7 +89,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
 
         ModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ModuleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = ModuleController.getModuleNames();
+            String[] strings = { "1", "2", "3", "4" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -98,11 +98,23 @@ public class AddModulesToDegree extends javax.swing.JFrame {
 
         OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
+        CoreModuleLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        CoreModuleLabel.setText("Core Modules:");
+
+        CoreModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        CoreModuleList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3", "4" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        CoreModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(CoreModuleList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(494, 494, 494)
@@ -117,35 +129,44 @@ public class AddModulesToDegree extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AddModulesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(AdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(AdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(ModuleLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(FullNameLabel)
+                                        .addGap(101, 101, 101)
+                                        .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(LevelLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(62, 62, 62)
+                                .addComponent(CoreModuleLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ModuleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(FullNameLabel)
-                        .addGap(101, 101, 101)
-                        .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LevelLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(303, 303, 303))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(AdminLabel)
+                .addGap(44, 44, 44)
+                .addComponent(AddModulesLabel)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AdminLabel)
-                        .addGap(44, 44, 44)
-                        .addComponent(AddModulesLabel)
-                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CoreModuleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(173, 173, 173))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(FullNameLabel)
                             .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,17 +174,16 @@ public class AddModulesToDegree extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ModuleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 109, Short.MAX_VALUE))
+                                .addGap(0, 128, Short.MAX_VALUE))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(AddModuleButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(OutputLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddModuleButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(OutputLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(37, 37, 37)
                 .addComponent(BackButton)
                 .addGap(18, 18, 18))
@@ -201,12 +221,10 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         String fullname = FullNameTextField.getText();
         Object[] levelObject = LevelList.getSelectedValues();
         Object [] modules = ModuleList.getSelectedValues();
-        //Need another list: CoreModuleList. To be able to specify wether the module you add to that level of the degree is core or optional.
-        
-        //ModuleController.addModulesToLevelOfDegree((String) levelObject[0], fullname, coreModuleName, modules);
+        Object [] coreModuleName = CoreModuleList.getSelectedValues();
         
         if (CheckErrors()) {
-            //CheckSuccess(INSERT SQL HERE);
+            CheckSuccess(ModuleController.addModulesToLevelOfDegree((String) levelObject[0], fullname, coreModuleName, modules));
         }
     }//GEN-LAST:event_AddModuleButtonActionPerformed
 
@@ -245,6 +263,8 @@ public class AddModulesToDegree extends javax.swing.JFrame {
     private javax.swing.JLabel AddModulesLabel;
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
+    private javax.swing.JLabel CoreModuleLabel;
+    private javax.swing.JList<String> CoreModuleList;
     private javax.swing.JLabel FullNameLabel;
     private javax.swing.JTextField FullNameTextField;
     private javax.swing.JLabel LevelLabel;
@@ -254,5 +274,6 @@ public class AddModulesToDegree extends javax.swing.JFrame {
     private javax.swing.JLabel OutputLabel;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     // End of variables declaration//GEN-END:variables
 }
