@@ -1,3 +1,4 @@
+package Admin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -79,7 +80,7 @@ public class addModulesS extends JFrame {
 		 } else if(textField5.getText().length()>9||textField5.getText().length()>9) {
 			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 		 }else {
-			 //enter code here
+			 //Database code: (Adding optional module for student)
 		 }
          
      }

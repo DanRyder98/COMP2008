@@ -1,3 +1,4 @@
+package Admin;
 //home page for Registrar
 
 import java.awt.*;

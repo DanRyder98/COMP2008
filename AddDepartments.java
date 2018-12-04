@@ -1,6 +1,9 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.DepartmentController;
+
 import java.sql.*;
 
 /**
@@ -160,6 +163,8 @@ public class AddDepartments extends javax.swing.JFrame {
         String fullname = FullNameTextField.getText();
         String abbreviatedCode = AbbreviatedCodeTextField.getText();
         String query = "INSERT INTO Department (departmentCode, departmentName) VALUES (abbreviatedCode, fullname)";
+        
+        boolean success = DepartmentController.addDepartment(abbreviatedCode, fullname);
     }//GEN-LAST:event_AddDepartmentButtonActionPerformed
 
     public static void main(String args[]) {

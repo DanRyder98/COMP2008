@@ -1,5 +1,6 @@
 package Admin;
 import java.awt.*;
+import database.*;
 import javax.swing.*;
 import java.sql.*;
 
@@ -206,30 +207,59 @@ public class AddAccount extends javax.swing.JFrame {
         new ManageAccounts().setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
     
-    private void CheckErrors() {
-        if (false) {
-            AccountAddedLabel.setText("Account Added");
-            AccountAddedLabel.setVisible(true);
-        }
-        else if (false) {
-            AccountAddedLabel.setText("Error");
-        }
-        
+    private boolean CheckErrors() {
         if (UsernameTextField.getText().isEmpty() || PasswordTextField.getText().isEmpty()) {
-			 AccountAddedLabel.setText("please fill all fields");
+             AccountAddedLabel.setText("please fill all fields");
+                         return false;
         }
         else if (UsernameTextField.getText().length() > 45 || PasswordTextField.getText().length() > 45) {
             AccountAddedLabel.setText("Username/Password invalid");
+            return false;
+        }
+        else if (StudentNumberTextField.getText().length() != 9 && StudentNumberTextField.getText().isEmpty() == false) {
+            AccountAddedLabel.setText("Student number invalid");
+            return false;
+        }
+
+        if (StudentNumberTextField.getText().isEmpty() == false) {
+            try {
+                Integer.parseInt(StudentNumberTextField.getText());
+            }   catch(NumberFormatException e) {
+                return false;
+            }   catch(NullPointerException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            AccountAddedLabel.setText("Account Added");
+            AccountAddedLabel.setVisible(true);
+        }
+        else {
+            AccountAddedLabel.setText("Error");
         }
     }
     
     private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountButtonActionPerformed
-        CheckErrors();
+        
         
         String username = UsernameTextField.getText();
         String password = PasswordTextField.getText();
         String role = (String)AccountRoleComboBox.getSelectedItem();
-        Integer studentNumber = Integer.parseInt(StudentNumberTextField.getText());
+        String studentNumber = StudentNumberTextField.getText();
+        //Success is false because it had to be initialised. No other logic behind that.
+        boolean success = false;
+        boolean errorResults = CheckErrors();
+        if(errorResults) {
+            success = UsersController.addAccount(studentNumber, username, password, role);
+            CheckSuccess(success);
+        }
+        
+        
+        
         String query = "INSERT INTO User (username, password, role) VALUES (username, password, role)";
     }//GEN-LAST:event_AddAccountButtonActionPerformed
 
@@ -242,6 +272,7 @@ public class AddAccount extends javax.swing.JFrame {
         else {
             StudentNumberLabel.setVisible(false);
             StudentNumberTextField.setVisible(false);
+            StudentNumberTextField.setText("");
         }
     }//GEN-LAST:event_AccountRoleComboBoxActionPerformed
 

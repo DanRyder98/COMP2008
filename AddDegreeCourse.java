@@ -1,6 +1,10 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.DegreeController;
+import database.DepartmentController;
+
 import java.sql.*;
 
 /**
@@ -84,7 +88,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -96,7 +100,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         LeadDepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LeadDepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -115,12 +119,12 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         OutputLabel.setToolTipText("Hold down CTRL to select multiple");
 
         LevelLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        LevelLabel.setText("Level:");
+        LevelLabel.setText("Max Level:");
         LevelLabel.setToolTipText("Hold down CTRL to select multiple");
 
         LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "1", "2", "3", "4", "5"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -274,7 +278,22 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         String[] leadDepartmentString = new String[leadDepartmentObject.length];
         System.arraycopy(leadDepartmentObject, 0, leadDepartmentString, 0, leadDepartmentObject.length);
         
+        boolean yearInIndustry = YearInIndustryCheckBox.isSelected();
+        Object[] level = LevelList.getSelectedValues();
+        
+        // If user didn't specify the level
+        if(level == null) {//Only If the degree is in the table then update add to its associations
+            if (DegreeController.isInDegreeTable(fullname))
+            	DegreeController.addDegree(fullname, abbreviatedName, departmentsObject, leadDepartmentObject);
+        }
+        else//If the user did specify the level  
+            DegreeController.addDegree(fullname, abbreviatedName, departmentsObject, leadDepartmentObject, level, yearInIndustry);
+        	
+        	
+        	
+        	
         String query = "INSERT INTO Degree (name, degreeCode) VALUES (fullname, abbreviatedName)";
+        
     }                                                     
 
     private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  

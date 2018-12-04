@@ -1,6 +1,9 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.ModuleController;
+
 import java.sql.*;
 /**
  *
@@ -57,7 +60,7 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
 
         ModulesCodesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ModulesCodesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = ModuleController.getModuleNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -116,7 +119,9 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void RemoveModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveModuleButtonActionPerformed
-        Object[] moduleCodes = ModuleCodesList.getSelectedValues();
+        Object[] moduleNames = ModulesCodesList.getSelectedValues();
+        //Database remove:
+        ModuleController.removeModule(moduleNames);
     }//GEN-LAST:event_RemoveModuleButtonActionPerformed
 
     

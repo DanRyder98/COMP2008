@@ -1,6 +1,10 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.DegreeController;
+import database.DepartmentController;
+
 import java.sql.*;
 /**
  *
@@ -16,7 +20,7 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         RemoveAssosiationLabel = new javax.swing.JLabel();
@@ -43,7 +47,7 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -81,16 +85,22 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BackButton))
-                    .addComponent(RemoveAssosiationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RemoveAssosiationButton)
+                        .addGap(448, 448, 448))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(BackButton))
+                            .addComponent(RemoveAssosiationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 258, Short.MAX_VALUE)
+                .addGap(0, 299, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(DepartmentsLabel)
@@ -99,13 +109,9 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
                         .addComponent(FullNameLabel)
                         .addGap(211, 211, 211)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(247, 247, 247))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RemoveAssosiationButton)
-                .addGap(459, 459, 459))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .addComponent(FullNameTextField))
+                .addGap(206, 206, 206))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,37 +120,40 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
                 .addComponent(AdminLabel)
                 .addGap(44, 44, 44)
                 .addComponent(RemoveAssosiationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(61, 61, 61)
+                .addGap(162, 162, 162)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FullNameLabel)
                     .addComponent(FullNameTextField))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(DepartmentsLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
-                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(DepartmentsLabel))
+                .addGap(199, 199, 199)
                 .addComponent(RemoveAssosiationButton)
-                .addGap(60, 60, 60)
+                .addGap(96, 96, 96)
                 .addComponent(BackButton)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void RemoveAssosiationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveAssosiationButtonActionPerformed
+    private void RemoveAssosiationButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         String fullname = FullNameTextField.getText();
+        //Initialise an array of objects containing the departmentNames
+        Object [] departments;
         
-    }//GEN-LAST:event_RemoveAssosiationButtonActionPerformed
+        //DegreeController.removeDegreeDepartmentAssociation(fullname, departments);
+    }                                                       
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
         new HomePageAdministrator().setVisible(true);
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }                                          
 
-    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameTextFieldActionPerformed
+    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
-    }//GEN-LAST:event_FullNameTextFieldActionPerformed
+    }                                                 
 
     public static void main(String args[]) {
         try {
@@ -171,7 +180,7 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JList<String> DepartmentList;
@@ -181,5 +190,5 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
     private javax.swing.JButton RemoveAssosiationButton;
     private javax.swing.JLabel RemoveAssosiationLabel;
     private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
