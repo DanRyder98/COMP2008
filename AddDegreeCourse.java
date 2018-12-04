@@ -1,10 +1,6 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
-
-import database.DegreeController;
-import database.DepartmentController;
-
 import java.sql.*;
 
 /**
@@ -21,7 +17,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AdminLabel = new javax.swing.JLabel();
@@ -88,7 +84,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DepartmentController.getDepartmentNames();
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -100,7 +96,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
 
         LeadDepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LeadDepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DepartmentController.getDepartmentNames();
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -119,12 +115,12 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         OutputLabel.setToolTipText("Hold down CTRL to select multiple");
 
         LevelLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        LevelLabel.setText("Max Level:");
-        LevelLabel.setToolTipText("Hold down CTRL to select multiple");
+        LevelLabel.setText("Level:");
+        LevelLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
         LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5"};
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -243,66 +239,72 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
-        new HomePageAdministrator().setVisible(true);
-    }                                          
+        new ManageDegree().setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void CheckErrors() {
+    private boolean CheckErrors() {
         OutputLabel.setText("");
         if (FullNameTextField.getText().isEmpty() || AbbreviatedNameTextField.getText().isEmpty()) {
             OutputLabel.setText("please fill all fields");
+            return false;
         }
         else if (FullNameTextField.getText().length() > 100) {
             
             OutputLabel.setText("Full Name is too long");
+            return false;
         }
         else if (AbbreviatedNameTextField.getText().length() > 100) {
             OutputLabel.setText(OutputLabel.getText() + "Abbreviated Name is too long");
+            return false;
+        }
+        return true;
+    }
+    
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            OutputLabel.setText("Degree Added");
+        }
+        else {
+            OutputLabel.setText("SQL Error");
         }
     }
     
-    private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+    private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDegreeCourseButtonActionPerformed
         CheckErrors();
         
         String fullname = FullNameTextField.getText();
         String abbreviatedName = AbbreviatedNameTextField.getText();
         
         Object[] departmentsObject = DepartmentList.getSelectedValues();
-        String[] departmentsString = new String[departmentsObject.length];
-        System.arraycopy(departmentsObject, 0, departmentsString, 0, departmentsObject.length);
         
         Object[] leadDepartmentObject = LeadDepartmentList.getSelectedValues();
-        String[] leadDepartmentString = new String[leadDepartmentObject.length];
-        System.arraycopy(leadDepartmentObject, 0, leadDepartmentString, 0, leadDepartmentObject.length);
         
         boolean yearInIndustry = YearInIndustryCheckBox.isSelected();
         Object[] level = LevelList.getSelectedValues();
         
-        // If user didn't specify the level
-        if(level == null) {//Only If the degree is in the table then update add to its associations
-            if (DegreeController.isInDegreeTable(fullname))
-            	DegreeController.addDegree(fullname, abbreviatedName, departmentsObject, leadDepartmentObject);
+        if (CheckErrors()) {
+            // If user didn't specify the level
+            if(level == null) {//Only If the degree is in the table then update add to its associations
+                if (DegreeController.isInDegreeTable(fullname))
+                    CheckSuccess(DegreeController.addDegree(fullname, abbreviatedName, departmentsObject, leadDepartmentObject));
+                }
+            else//If the user did specify the level  
+                CheckSuccess(DegreeController.addDegree(fullname, abbreviatedName, departmentsObject, leadDepartmentObject, level, yearInIndustry));
         }
-        else//If the user did specify the level  
-            DegreeController.addDegree(fullname, abbreviatedName, departmentsObject, leadDepartmentObject, level, yearInIndustry);
-        	
-        	
-        	
-        	
-        String query = "INSERT INTO Degree (name, degreeCode) VALUES (fullname, abbreviatedName)";
         
-    }                                                     
+    }//GEN-LAST:event_AddDegreeCourseButtonActionPerformed
 
-    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                 
+    }//GEN-LAST:event_FullNameTextFieldActionPerformed
 
-    private void AbbreviatedNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+    private void AbbreviatedNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbbreviatedNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                        
+    }//GEN-LAST:event_AbbreviatedNameTextFieldActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -329,7 +331,7 @@ public class AddDegreeCourse extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AbbreviatedNameLabel1;
     private javax.swing.JTextField AbbreviatedNameTextField;
     private javax.swing.JButton AddDegreeCourseButton;
@@ -350,5 +352,5 @@ public class AddDegreeCourse extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

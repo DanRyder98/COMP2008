@@ -135,20 +135,33 @@ public class RemoveAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UsernameTextFieldActionPerformed
 
-    private void CheckErrors() {
+    private boolean CheckErrors() {
         if (UsernameTextField.getText().isEmpty()) {
-			 OutputLabel.setText("please fill all fields");
+            OutputLabel.setText("Please fill all fields");
+            return false;
         }
         else if (UsernameTextField.getText().length() > 45) {
-            OutputLabel.setText("Username is invalid");
+            OutputLabel.setText("Username is too long");
+            return false;
+        }
+        return true;
+    }
+    
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            OutputLabel.setText("Degree Added");
+        }
+        else {
+            OutputLabel.setText("SQL Error");
         }
     }
     
     private void RemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveUserActionPerformed
-        CheckErrors();
-        
         String username = UsernameTextField.getText();
-        String query = "DELETE FROM User WHERE username=" + username;
+        
+        if (CheckErrors()) {
+            //CheckSuccess(INSERT SQL HERE);
+        }
     }//GEN-LAST:event_RemoveUserActionPerformed
 
     /**

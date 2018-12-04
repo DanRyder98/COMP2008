@@ -1,6 +1,5 @@
 package Admin;
 import java.awt.*;
-import database.*;
 import javax.swing.*;
 import java.sql.*;
 
@@ -209,7 +208,7 @@ public class AddAccount extends javax.swing.JFrame {
     
     private boolean CheckErrors() {
         if (UsernameTextField.getText().isEmpty() || PasswordTextField.getText().isEmpty()) {
-             AccountAddedLabel.setText("please fill all fields");
+			 AccountAddedLabel.setText("please fill all fields");
                          return false;
         }
         else if (UsernameTextField.getText().length() > 45 || PasswordTextField.getText().length() > 45) {
@@ -220,47 +219,42 @@ public class AddAccount extends javax.swing.JFrame {
             AccountAddedLabel.setText("Student number invalid");
             return false;
         }
-
+        
         if (StudentNumberTextField.getText().isEmpty() == false) {
             try {
                 Integer.parseInt(StudentNumberTextField.getText());
             }   catch(NumberFormatException e) {
+                AccountAddedLabel.setText("Student number needs to be a number");
                 return false;
             }   catch(NullPointerException e) {
+                AccountAddedLabel.setText("Student number needs to be a number");
                 return false;
             }
         }
         return true;
     }
-
+    
     private void CheckSuccess(boolean success) {
         if (success) {
             AccountAddedLabel.setText("Account Added");
-            AccountAddedLabel.setVisible(true);
         }
         else {
-            AccountAddedLabel.setText("Error");
+            AccountAddedLabel.setText("SQL Error");
         }
     }
     
     private void AddAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAccountButtonActionPerformed
-        
-        
         String username = UsernameTextField.getText();
         String password = PasswordTextField.getText();
         String role = (String)AccountRoleComboBox.getSelectedItem();
         String studentNumber = StudentNumberTextField.getText();
-        //Success is false because it had to be initialised. No other logic behind that.
-        boolean success = false;
+        
+        boolean success;
         boolean errorResults = CheckErrors();
         if(errorResults) {
             success = UsersController.addAccount(studentNumber, username, password, role);
             CheckSuccess(success);
         }
-        
-        
-        
-        String query = "INSERT INTO User (username, password, role) VALUES (username, password, role)";
     }//GEN-LAST:event_AddAccountButtonActionPerformed
 
     private void AccountRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountRoleComboBoxActionPerformed

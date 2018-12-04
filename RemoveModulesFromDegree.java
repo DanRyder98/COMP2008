@@ -29,6 +29,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
         ModuleList = new javax.swing.JList<>();
         RemoveModuleButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
+        OutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +90,8 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
             }
         });
 
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +104,9 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
                             .addComponent(BackButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(RemoveModuleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(467, 467, 467))))
+                                .addGap(34, 34, 34)
+                                .addComponent(OutputLabel)
+                                .addGap(335, 335, 335))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,25 +134,30 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AdminLabel)
-                .addGap(44, 44, 44)
-                .addComponent(RemoveModulesLabel)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FullNameLabel)
-                    .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ModuleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 109, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(RemoveModuleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AdminLabel)
+                        .addGap(44, 44, 44)
+                        .addComponent(RemoveModulesLabel)
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FullNameLabel)
+                            .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ModuleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 109, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(RemoveModuleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(OutputLabel)))
                 .addGap(43, 43, 43)
                 .addComponent(BackButton)
                 .addContainerGap())
@@ -160,10 +170,35 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FullNameTextFieldActionPerformed
 
+    private boolean CheckErrors() {
+        if (FullNameTextField.getText().isEmpty() || LevelList.getSelectedValues() == null || ModuleList.getSelectedValue() == null) {
+            OutputLabel.setText("Please fill all fields");
+            return false;
+        }
+        else if (FullNameTextField.getText().length() > 100) {
+            OutputLabel.setText("Full Name is too long");
+            return false;
+        }
+        return true;
+    }
+    
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            OutputLabel.setText("Degree Added");
+        }
+        else {
+            OutputLabel.setText("SQL Error");
+        }
+    }
+    
     private void RemoveModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveModuleButtonActionPerformed
         String fullname = FullNameTextField.getText();
         Object[] levelObject = LevelList.getSelectedValues();
         Object [] modules = ModuleList.getSelectedValues();
+        
+        if (CheckErrors()) {
+            //CheckSuccess(INSERT SQL HERE);
+        }
     }//GEN-LAST:event_RemoveModuleButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -205,6 +240,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
     private javax.swing.JList<String> LevelList;
     private javax.swing.JLabel ModuleLabel;
     private javax.swing.JList<String> ModuleList;
+    private javax.swing.JLabel OutputLabel;
     private javax.swing.JButton RemoveModuleButton;
     private javax.swing.JLabel RemoveModulesLabel;
     private javax.swing.JScrollPane jScrollPane3;

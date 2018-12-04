@@ -2,7 +2,6 @@ package Admin;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
-import database.*;
 /**
  *
  * @author Daniel Ryder
@@ -31,6 +30,7 @@ public class RemoveDepartments extends javax.swing.JFrame {
         RemoveDepartmentButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         DepartmentList = new javax.swing.JList<>();
+        OutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,11 +60,13 @@ public class RemoveDepartments extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DepartmentController.getDepartmentNames();
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(DepartmentList);
+
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,7 +86,9 @@ public class RemoveDepartments extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(RemoveDepartmentButton)
-                        .addGap(445, 445, 445))))
+                        .addGap(30, 30, 30)
+                        .addComponent(OutputLabel)
+                        .addGap(317, 317, 317))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,7 +104,9 @@ public class RemoveDepartments extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(RemoveDepartmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RemoveDepartmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(OutputLabel))
                 .addGap(4, 4, 4)
                 .addComponent(BackButton)
                 .addContainerGap())
@@ -111,13 +117,32 @@ public class RemoveDepartments extends javax.swing.JFrame {
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
-        new HomePageAdministrator().setVisible(true);
+        new ManageDepartments().setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
+    private boolean CheckErrors() {
+        if (DepartmentList.getSelectedValues() == null) {
+            OutputLabel.setText("Please fill all fields");
+            return false;
+        }
+        return true;
+    }
+    
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            OutputLabel.setText("Degree Added");
+        }
+        else {
+            OutputLabel.setText("SQL Error");
+        }
+    }
+    
     private void RemoveDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveDepartmentButtonActionPerformed
         Object[] departments = DepartmentList.getSelectedValues();
         
-        DepartmentController.removeDepartment(departments);
+        if (CheckErrors()) {
+            CheckSuccess(DepartmentController.removeDepartment(departments));
+        }
     }//GEN-LAST:event_RemoveDepartmentButtonActionPerformed
 
     /**
@@ -159,6 +184,7 @@ public class RemoveDepartments extends javax.swing.JFrame {
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JList<String> DepartmentList;
+    private javax.swing.JLabel OutputLabel;
     private javax.swing.JButton RemoveDepartmentButton;
     private javax.swing.JLabel RemoveDepartmentLabel;
     private javax.swing.JScrollPane jScrollPane1;

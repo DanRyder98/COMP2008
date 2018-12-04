@@ -32,6 +32,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         ModuleLabel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         ModuleList = new javax.swing.JList<>();
+        OutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,8 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         ModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(ModuleList);
 
+        OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,7 +107,9 @@ public class AddModulesToDegree extends javax.swing.JFrame {
                             .addComponent(BackButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(AddModuleButton)
-                                .addGap(467, 467, 467))))
+                                .addGap(39, 39, 39)
+                                .addComponent(OutputLabel)
+                                .addGap(330, 330, 330))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,25 +137,30 @@ public class AddModulesToDegree extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AdminLabel)
-                .addGap(44, 44, 44)
-                .addComponent(AddModulesLabel)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FullNameLabel)
-                    .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ModuleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 109, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(AddModuleButton)
+                        .addComponent(AdminLabel)
+                        .addGap(44, 44, 44)
+                        .addComponent(AddModulesLabel)
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FullNameLabel)
+                            .addComponent(FullNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LevelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ModuleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 109, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(AddModuleButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(OutputLabel)))
                 .addGap(37, 37, 37)
                 .addComponent(BackButton)
                 .addGap(18, 18, 18))
@@ -163,10 +173,35 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FullNameTextFieldActionPerformed
 
+    private boolean CheckErrors() {
+        if (FullNameTextField.getText().isEmpty()) {
+            OutputLabel.setText("Please fill all fields");
+            return false;
+        }
+        else if (FullNameTextField.getText().length() > 100) {
+            OutputLabel.setText("Full Name is too long");
+            return false;
+        }
+        return true;
+    }
+    
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            OutputLabel.setText("Degree Added");
+        }
+        else {
+            OutputLabel.setText("SQL Error");
+        }
+    }
+    
     private void AddModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddModuleButtonActionPerformed
         String fullname = FullNameTextField.getText();
         Object[] levelObject = LevelList.getSelectedValues();
         Object [] modules = ModuleList.getSelectedValues();
+        
+        if (CheckErrors()) {
+            //CheckSuccess(INSERT SQL HERE);
+        }
     }//GEN-LAST:event_AddModuleButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -210,6 +245,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
     private javax.swing.JList<String> LevelList;
     private javax.swing.JLabel ModuleLabel;
     private javax.swing.JList<String> ModuleList;
+    private javax.swing.JLabel OutputLabel;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables

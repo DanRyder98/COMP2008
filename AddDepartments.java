@@ -1,9 +1,6 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
-
-import database.DepartmentController;
-
 import java.sql.*;
 
 /**
@@ -142,18 +139,31 @@ public class AddDepartments extends javax.swing.JFrame {
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
-        new HomePageAdministrator().setVisible(true);
+        new ManageDepartments().setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void CheckErrors() {
+    private boolean CheckErrors() {
         if (FullNameTextField.getText().isEmpty() || AbbreviatedCodeTextField.getText().isEmpty()) {
-			 OutputLabel.setText("please fill all fields");
+            OutputLabel.setText("please fill all fields");
+            return false;
         }
         else if (FullNameTextField.getText().length() > 100) {
             OutputLabel.setText("Full Name is too long");
+            return false;
         }
         else if (AbbreviatedCodeTextField.getText().length() > 100) {
             OutputLabel.setText("Abbreviated Name is too long");
+            return false;
+        }
+        return true;
+    }
+    
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            OutputLabel.setText("Degree Added");
+        }
+        else {
+            OutputLabel.setText("SQL Error");
         }
     }
     
@@ -162,9 +172,10 @@ public class AddDepartments extends javax.swing.JFrame {
         
         String fullname = FullNameTextField.getText();
         String abbreviatedCode = AbbreviatedCodeTextField.getText();
-        String query = "INSERT INTO Department (departmentCode, departmentName) VALUES (abbreviatedCode, fullname)";
         
-        boolean success = DepartmentController.addDepartment(abbreviatedCode, fullname);
+        if (CheckErrors()) {
+            CheckSuccess(DepartmentController.addDepartment(abbreviatedCode, fullname));
+        }
     }//GEN-LAST:event_AddDepartmentButtonActionPerformed
 
     public static void main(String args[]) {
