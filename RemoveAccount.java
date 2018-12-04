@@ -1,9 +1,6 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
-
-import database.UsersController;
-
 import java.sql.*;
 /**
  *
@@ -163,7 +160,7 @@ public class RemoveAccount extends javax.swing.JFrame {
         String username = UsernameTextField.getText();
         
         if (CheckErrors()) {
-            UsersController.removeAccount(username);
+            CheckSuccess(UsersController.removeAccount(username));
         }
     }//GEN-LAST:event_RemoveUserActionPerformed
 

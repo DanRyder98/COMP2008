@@ -1,5 +1,7 @@
 package Admin;
-import database.ModuleController;
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author Daniel Ryder
