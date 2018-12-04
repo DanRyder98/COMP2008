@@ -23,10 +23,10 @@ public static void main(String args[])  throws SQLException {
 	         
 	        //Create Users table
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Users ( "+
-                                   "id INT(9) NOT NULL,"+
+                                   "id VARCHAR(45) NOT NULL,"+
 		                           "username VARCHAR(45) NOT NULL, "+
                                    "password VARCHAR(45) NOT NULL, "+
-		                           "role ENUM('Admin','Registrar','Teacher','Student') NOT NULL,"+
+		                           "role ENUM('Administrator','Registrar','Teacher','Student') NOT NULL,"+
                                    "PRIMARY KEY(id)) ENGINE = InnoDB;");
 	        //Create Degree table
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Degree ( "+
@@ -35,7 +35,7 @@ public static void main(String args[])  throws SQLException {
                                    "PRIMARY KEY (degreeName)) ENGINE = InnoDB;");
 	        //Create Students table
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Student ( "+
-	                               "registrationNumber INT(9) NOT NULL,"+
+	                               "registrationNumber VARCHAR(45) NOT NULL,"+
 	        		               "surname VARCHAR(45) NOT NULL, "+
 	                               "forename VARCHAR(45) NOT NULL, "+
 	        		               "title ENUM('Mr','Ms','Other') NOT NULL,"+
@@ -67,7 +67,7 @@ public static void main(String args[])  throws SQLException {
 		                           "PRIMARY KEY(LOSlabel)) ENGINE = InnoDB;");
 	        //Create PeriodOfStudy table
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS PeriodOfStudy ( "+
-                                   "registrationNumber INT(9) NOT NULL,"+
+                                   "registrationNumber VARCHAR(45) NOT NULL,"+
 		                           "label VARCHAR(45) NOT NULL, "+
                                    "level VARCHAR(2) NOT NULL, "+
 		                           "startDate DATE NOT NULL,"+
@@ -77,9 +77,9 @@ public static void main(String args[])  throws SQLException {
 		                           "FOREIGN KEY(level) REFERENCES LevelOfStudy(LOSlabel)) ENGINE = InnoDB;");	        
 	        
 	        //Linker tables:
-	        //Create ModuleSelected table (represents the relationship the student has with each of his modules. Used to represent grades.)
-	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ModuleSelected ( "+
-                                   "registrationNumber INT(9) NOT NULL,"+
+	        //Create Grades table (represents the relationship the student has with each of his modules. Used to represent grades.)
+	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Grade ( "+
+                                   "registrationNumber VARCHAR(45) NOT NULL,"+
                                    "moduleName VARCHAR(45) NOT NULL, "+
                                    "initialGrade FLOAT(4, 2), "+
                                    "resitGrade FLOAT(4, 2),"+
@@ -113,6 +113,14 @@ public static void main(String args[])  throws SQLException {
                                    "PRIMARY KEY(moduleName,level,degreeName),"+
                                    "FOREIGN KEY(moduleName) REFERENCES Module(moduleName) ON DELETE CASCADE, "+
                                    "FOREIGN KEY(degreeName,level) REFERENCES LevelOfDegree(degreeName,level) ON DELETE CASCADE) ENGINE = InnoDB;");
+	        //Create GradeOfPeriodOfStudy
+	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS GradeOfPeriodOfStudy( "+
+	                               "registrationNumber VARCHAR(45) NOT NULL, "+
+	        		               "periodOfStudyLabel VARCHAR(1), "+
+	                               "moduleName VARCHAR(45) "+
+	        		               "PRIMARY KEY (registrationNumber,periodOfStudy,moduleName) "+
+	                               "FOREIGN KEY (registrationNumber,periodOfStudyLabel) REFERENCES PeriodOfStudy(registrationNumber,label)"+
+	        		               "FOREIGN KEY (moduleName,registrationNumber) REFERENCES Grades(moduleName,registrationNumber))");
 	        		               
 	        // --------------------------------------------------------------------------------------------------------------
 	        // Initializing basic values into tables. E.g.: Inserting all the levels of study.
