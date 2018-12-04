@@ -17,7 +17,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AdminLabel = new javax.swing.JLabel();
@@ -157,22 +157,22 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                 
+    }//GEN-LAST:event_FullNameTextFieldActionPerformed
 
-    private void AddModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    private void AddModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddModuleButtonActionPerformed
         String fullname = FullNameTextField.getText();
         Object[] levelObject = LevelList.getSelectedValues();
         Object [] modules = ModuleList.getSelectedValues();
-    }                                               
+    }//GEN-LAST:event_AddModuleButtonActionPerformed
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
-        new HomePageAdministrator().setVisible(true);
-    }                                          
+        new ManageModules().setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -199,7 +199,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddModuleButton;
     private javax.swing.JLabel AddModulesLabel;
     private javax.swing.JLabel AdminLabel;
@@ -212,5 +212,5 @@ public class AddModulesToDegree extends javax.swing.JFrame {
     private javax.swing.JList<String> ModuleList;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

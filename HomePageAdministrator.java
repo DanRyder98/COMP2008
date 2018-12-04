@@ -17,7 +17,7 @@ public class HomePageAdministrator extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         ManageAccountsButton = new javax.swing.JButton();
@@ -133,37 +133,37 @@ public class HomePageAdministrator extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void ManageAccountsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+    private void ManageAccountsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageAccountsButtonActionPerformed
         this.setVisible(false);
         new ManageAccounts().setVisible(true);
-    }                                                    
+    }//GEN-LAST:event_ManageAccountsButtonActionPerformed
 
-    private void ManageDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                        
+    private void ManageDepartmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageDepartmentsButtonActionPerformed
         this.setVisible(false);
         new ManageDepartments().setVisible(true);
-    }                                                       
+    }//GEN-LAST:event_ManageDepartmentsButtonActionPerformed
 
-    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         this.setVisible(false);
         new LoggingIn().setVisible(true);
-    }                                            
+    }//GEN-LAST:event_LogOutButtonActionPerformed
 
-    private void ManageDegreeButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+    private void ManageDegreeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageDegreeButtonActionPerformed
         this.setVisible(false);
         new ManageDegree().setVisible(true);
-    }                                                  
+    }//GEN-LAST:event_ManageDegreeButtonActionPerformed
 
-    private void ManageModulesButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void ManageModulesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageModulesButtonActionPerformed
         this.setVisible(false);
         new ManageModules().setVisible(true);
-    }                                                   
+    }//GEN-LAST:event_ManageModulesButtonActionPerformed
 
-    private void RemoveDepartmentDegreeAssociationButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                                        
+    private void RemoveDepartmentDegreeAssociationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveDepartmentDegreeAssociationButtonActionPerformed
         this.setVisible(false);
         new RemoveDepartmentDegreeAssociation().setVisible(true);
-    }                                                                       
+    }//GEN-LAST:event_RemoveDepartmentDegreeAssociationButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -192,7 +192,7 @@ public class HomePageAdministrator extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JButton ManageAccountsButton;
@@ -201,5 +201,5 @@ public class HomePageAdministrator extends javax.swing.JFrame {
     private javax.swing.JButton ManageModulesButton;
     private javax.swing.JButton RemoveDepartmentDegreeAssociationButton;
     private javax.swing.JLabel WelcomeLabel;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }

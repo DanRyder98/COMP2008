@@ -14,7 +14,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         AdminLabel = new javax.swing.JLabel();
@@ -154,22 +154,22 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void FullNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }                                                 
+    }//GEN-LAST:event_FullNameTextFieldActionPerformed
 
-    private void RemoveModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+    private void RemoveModuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveModuleButtonActionPerformed
         String fullname = FullNameTextField.getText();
         Object[] levelObject = LevelList.getSelectedValues();
         Object [] modules = ModuleList.getSelectedValues();
-    }                                                  
+    }//GEN-LAST:event_RemoveModuleButtonActionPerformed
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
-        new HomePageAdministrator().setVisible(true);
-    }                                          
+        new ManageModules().setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -196,7 +196,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel FullNameLabel;
@@ -209,5 +209,5 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
     private javax.swing.JLabel RemoveModulesLabel;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
