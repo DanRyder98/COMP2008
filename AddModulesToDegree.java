@@ -1,6 +1,9 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.ModuleController;
+
 import java.sql.*;
 
 /**
@@ -86,7 +89,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
 
         ModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ModuleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4" };
+            String[] strings = ModuleController.getModuleNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -198,6 +201,9 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         String fullname = FullNameTextField.getText();
         Object[] levelObject = LevelList.getSelectedValues();
         Object [] modules = ModuleList.getSelectedValues();
+        //Need another list: CoreModuleList. To be able to specify wether the module you add to that level of the degree is core or optional.
+        
+        //ModuleController.addModulesToLevelOfDegree((String) levelObject[0], fullname, coreModuleName, modules);
         
         if (CheckErrors()) {
             //CheckSuccess(INSERT SQL HERE);
