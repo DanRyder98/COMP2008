@@ -1,10 +1,6 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
-
-import database.DegreeController;
-import database.DepartmentController;
-
 import java.sql.*;
 /**
  *
@@ -26,13 +22,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         AdminLabel = new javax.swing.JLabel();
         RemoveDegreeCourseLabel = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
-        AddDegreeCourseButton = new javax.swing.JButton();
-        DepartmentsLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        DepartmentList = new javax.swing.JList<>();
-        NewLeadDepartmentLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        NewLeadDepartmentList = new javax.swing.JList<>();
+        RemoveDegreeCourseButton = new javax.swing.JButton();
         ExistingCoursesLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ExistingCoursesList = new javax.swing.JList<>();
@@ -55,45 +45,24 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
             }
         });
 
-        AddDegreeCourseButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        AddDegreeCourseButton.setText("Add Degree Course");
-        AddDegreeCourseButton.addActionListener(new java.awt.event.ActionListener() {
+        RemoveDegreeCourseButton.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        RemoveDegreeCourseButton.setText("Remove Degree Course");
+        RemoveDegreeCourseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddDegreeCourseButtonActionPerformed(evt);
+                RemoveDegreeCourseButtonActionPerformed(evt);
             }
         });
-
-        DepartmentsLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        DepartmentsLabel.setText("Department(s):");
-
-        DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DepartmentController.getDepartmentNames();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(DepartmentList);
-
-        NewLeadDepartmentLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        NewLeadDepartmentLabel.setText("New Lead Department:");
-
-        NewLeadDepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        NewLeadDepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(NewLeadDepartmentList);
 
         ExistingCoursesLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ExistingCoursesLabel.setText("Existing Courses:");
 
         ExistingCoursesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ExistingCoursesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DegreeController.getDegreeNameAsString();
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        ExistingCoursesList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(ExistingCoursesList);
 
         OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -112,23 +81,16 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
                     .addComponent(AdminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ExistingCoursesLabel)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DepartmentsLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(404, 404, 404)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ExistingCoursesLabel)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AddDegreeCourseButton)
+                        .addComponent(RemoveDegreeCourseButton)
                         .addGap(57, 57, 57)
                         .addComponent(OutputLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NewLeadDepartmentLabel)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(34, 364, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,20 +99,13 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
                 .addComponent(AdminLabel)
                 .addGap(44, 44, 44)
                 .addComponent(RemoveDegreeCourseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DepartmentsLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ExistingCoursesLabel)
-                        .addComponent(NewLeadDepartmentLabel)))
+                .addGap(51, 51, 51)
+                .addComponent(ExistingCoursesLabel)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane3))
-                .addGap(49, 49, 49)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddDegreeCourseButton)
+                    .addComponent(RemoveDegreeCourseButton)
                     .addComponent(OutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(46, 46, 46)
                 .addComponent(BackButton)
@@ -166,7 +121,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private boolean CheckErrors() {
-        if (ExistingCoursesList.getSelectedValues() == null || DepartmentList.getSelectedValues() == null || NewLeadDepartmentList.getSelectedValues() == null) {
+        if (ExistingCoursesList.getSelectedValues() == null) {
             OutputLabel.setText("Please fill all fields");
             return false;
         }
@@ -182,17 +137,13 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         }
     }
     
-    private void AddDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDegreeCourseButtonActionPerformed
+    private void RemoveDegreeCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveDegreeCourseButtonActionPerformed
         Object[] existingCourses = ExistingCoursesList.getSelectedValues();
-        Object[] departments = DepartmentList.getSelectedValues();
-        Object[] newLeadDepartment = NewLeadDepartmentList.getSelectedValues();
-        
-        
         
         if (CheckErrors()) {
-            DegreeController.removeDegreeDepartmentAssociation((String) existingCourses[0], departments);
+            CheckSuccess(DegreeController.removeDegreeDepartmentAssociation((String) existingCourses[0]));
         }
-    }//GEN-LAST:event_AddDegreeCourseButtonActionPerformed
+    }//GEN-LAST:event_RemoveDegreeCourseButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -220,19 +171,13 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddDegreeCourseButton;
     private javax.swing.JLabel AdminLabel;
     private javax.swing.JButton BackButton;
-    private javax.swing.JList<String> DepartmentList;
-    private javax.swing.JLabel DepartmentsLabel;
     private javax.swing.JLabel ExistingCoursesLabel;
     private javax.swing.JList<String> ExistingCoursesList;
-    private javax.swing.JLabel NewLeadDepartmentLabel;
-    private javax.swing.JList<String> NewLeadDepartmentList;
     private javax.swing.JLabel OutputLabel;
+    private javax.swing.JButton RemoveDegreeCourseButton;
     private javax.swing.JLabel RemoveDegreeCourseLabel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
