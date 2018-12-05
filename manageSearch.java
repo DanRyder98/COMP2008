@@ -1,5 +1,15 @@
-import java.awt.*;
-import javax.swing.*;
+package Admin;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class manageSearch extends JFrame {
 	private static final long serialVersionUID = 9L;

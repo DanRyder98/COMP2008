@@ -1,7 +1,6 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
+import database2.DepartmentController;
+import database2.ModuleController;
 
 /**
  *
@@ -78,7 +77,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -266,9 +265,10 @@ public class AddModulesOverall extends javax.swing.JFrame {
         Object[] departmentsObject = DepartmentList.getSelectedValues();
         Object[] teachingTimeObject = TeachingTimeList.getSelectedValues();
         String credits = (String)CreditsComboBox.getSelectedItem();
+        int creditsi = Integer.parseInt(credits);
         
         if (CheckErrors()) {
-            CheckSuccess(ModuleController.addModule(abbreviatedName, fullname, credits, (String) teachingTimeObject[0], (String) departmentsObject[0]));
+            CheckSuccess(ModuleController.addModule(abbreviatedName, fullname, creditsi, (String) teachingTimeObject[0], (String) departmentsObject[0]));
         }
     }//GEN-LAST:event_AddModuleButtonActionPerformed
 

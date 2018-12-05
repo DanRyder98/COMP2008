@@ -2,8 +2,8 @@ package Admin;
 import java.awt.*;
 import javax.swing.*;
 
-import database.DegreeController;
-import database.StudentController;
+import database2.DegreeController;
+import database2.StudentController;
 
 
 public class addStudents extends javax.swing.JFrame {

@@ -1,5 +1,15 @@
-import java.awt.*;
-import javax.swing.*;
+package Admin;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class validatemodulesS extends JFrame {
 	private static final long serialVersionUID = 6L;
@@ -53,7 +63,7 @@ public class validatemodulesS extends JFrame {
 				 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 			 }else {
 				 //enter code here
-				 CheckSuccess();
+				 //CheckSuccess();
 			 }
      }
 	 private void CheckSuccess(boolean success) {

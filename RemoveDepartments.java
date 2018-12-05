@@ -1,7 +1,5 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
+import database2.DepartmentController;
 /**
  *
  * @author Daniel Ryder
@@ -60,7 +58,7 @@ public class RemoveDepartments extends javax.swing.JFrame {
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3" };
+            String[] strings = DepartmentController.getDepartmentNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

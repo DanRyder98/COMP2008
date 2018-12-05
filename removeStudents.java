@@ -1,5 +1,5 @@
-import java.awt.*;
-import javax.swing.*;
+package Admin;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -143,7 +143,7 @@ public class removeStudents extends javax.swing.JFrame {
 		 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 	 }else {
 		 //enter code here
-		 CheckSuccess();//enter value
+		 //CheckSuccess();//enter value
 	 }
     	
     }                                          

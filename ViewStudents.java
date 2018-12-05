@@ -1,4 +1,4 @@
-
+package Admin;
 
 
 public class ViewStudents extends javax.swing.JFrame {

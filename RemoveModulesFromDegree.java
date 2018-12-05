@@ -1,7 +1,6 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
+
+import database2.ModuleController;
 
 /**
  *
@@ -67,7 +66,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
 
         ModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ModuleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3" };
+            String[] strings = ModuleController.getModuleNames();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

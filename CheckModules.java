@@ -2,10 +2,10 @@ package Admin;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.Module;
-import database.Student;
-import database.StudentController;
-import database.testTables;
+import database2.Module;
+import database2.Student;
+import database2.StudentController;
+import database2.testTables;
 
 /**
  *

@@ -1,7 +1,5 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
+import database2.DegreeController;
 /**
  *
  * @author Daniel Ryder
@@ -58,7 +56,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
 
         ExistingCoursesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         ExistingCoursesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3" };
+            String[] strings = DegreeController.getDegreeNameAsString();
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -141,7 +139,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         Object[] existingCourses = ExistingCoursesList.getSelectedValues();
         
         if (CheckErrors()) {
-            CheckSuccess(DegreeController.removeDegreeDepartmentAssociation((String) existingCourses[0]));
+            CheckSuccess(DegreeController.removeDegree(existingCourses));
         }
     }//GEN-LAST:event_RemoveDegreeCourseButtonActionPerformed
 
