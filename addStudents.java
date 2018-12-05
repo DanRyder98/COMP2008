@@ -29,7 +29,7 @@ public class addStudents extends javax.swing.JFrame {
         UniEmailLabel = new javax.swing.JLabel();
         PTutorLabel = new javax.swing.JLabel();
         RegNumberTextField = new javax.swing.JTextField();
-        TitleTextField =  new javax.swing.JTextField();
+        TitleComboBox=  new javax.swing.JComboBox<>();
         SurnameTextField = new javax.swing.JTextField();
         ForenameTextField = new javax.swing.JTextField();
         UniEmailTextField =  new javax.swing.JTextField();
@@ -60,8 +60,13 @@ public class addStudents extends javax.swing.JFrame {
         TitleLabel.setFont(new java.awt.Font("Verdana", 0, 18));
         TitleLabel.setText("Title");
         
-        TitleTextField.setFont(new java.awt.Font("Verdana", 0, 18));
-        TitleTextField.setText("");// enter value here
+        TitleComboBox.setFont(new java.awt.Font("Verdana", 0, 14)); 
+        TitleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Mr","Ms","Other"}));
+        TitleComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TitleComboBoxActionPerformed(evt);
+            }
+        });
         
         SurnameLabel.setFont(new java.awt.Font("Verdana", 0, 18));
         SurnameLabel.setText("Surname");
@@ -131,7 +136,7 @@ public class addStudents extends javax.swing.JFrame {
                     .addComponent(DegNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
                     .addComponent(DegreeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
-                    .addComponent(TitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TitleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SurnameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
                     .addComponent(SurnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ForenameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
@@ -159,7 +164,7 @@ public class addStudents extends javax.swing.JFrame {
                 .addComponent(DegNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
                 .addComponent(DegreeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(TitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
-                .addComponent(TitleTextField)
+                .addComponent(TitleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(SurnameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
                 .addComponent(SurnameTextField)
                 .addComponent(ForenameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE)
@@ -177,7 +182,7 @@ public class addStudents extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void UpdateStudentAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {     
-    	if (RegNumberTextField.getText().isEmpty() ||  TitleTextField.getText().isEmpty() || SurnameTextField.getText().isEmpty()||
+    	if (RegNumberTextField.getText().isEmpty() ||  SurnameTextField.getText().isEmpty()||
     			ForenameTextField.getText().isEmpty() || UniEmailTextField.getText().isEmpty()||PTutorTextField.getText().isEmpty()) {
 			 JOptionPane.showMessageDialog(null,"please fill all fields");
 		 } else if(RegNumberTextField.getText().length()>9||RegNumberTextField.getText().length()>9) {
@@ -187,7 +192,7 @@ public class addStudents extends javax.swing.JFrame {
 			 String registrationNumber = RegNumberTextField.getText();
 			 String surname = SurnameTextField.getText();
 			 String forename = ForenameTextField.getText();
-			 String title = TitleTextField.getText();
+			 String title =(String)TitleComboBox.getSelectedItem();
 			 String universityEmail = UniEmailTextField.getText();
 			 String personalTutor = PTutorTextField.getText();
 			 CheckSuccess(StudentController.addStudent(registrationNumber, surname, forename, title, degreeName, universityEmail, personalTutor));
@@ -210,13 +215,11 @@ public class addStudents extends javax.swing.JFrame {
         }
     }
     
-    private void DegreeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountRoleComboBoxActionPerformed
-        String comboBoxValue = (String)DegreeComboBox.getSelectedItem();
-       // if () {
-                                
-       // }
-        //else {
+    private void DegreeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
             
+       }
+    private void TitleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
+       
        }
     
 
@@ -240,7 +243,7 @@ public class addStudents extends javax.swing.JFrame {
     private javax.swing.JLabel UniEmailLabel;
     private javax.swing.JLabel PTutorLabel;
     private javax.swing.JTextField RegNumberTextField;
-    private javax.swing.JTextField TitleTextField;
+    private javax.swing.JComboBox<String> TitleComboBox;
     private javax.swing.JTextField SurnameTextField;
     private javax.swing.JTextField ForenameTextField;
     private javax.swing.JTextField UniEmailTextField;
