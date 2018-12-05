@@ -1,7 +1,9 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import database.Module;
 
 /**
  *
@@ -48,9 +50,10 @@ public class CheckModules extends javax.swing.JFrame {
         StudentLabel.setText("Student:");
         StudentLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
+        //This should be called student list I'll change it
         LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5" };
+            String[] strings = {"student1","student2","student3"};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -65,6 +68,7 @@ public class CheckModules extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
+            		//THESE WILL BE THE COLUMN TITLES WHATEVER ORDER YOU WANT
                 "Title 1", "Title 2", "Title 3"
             }
         ) {
@@ -86,7 +90,7 @@ public class CheckModules extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Module Name, Module Code, Credits"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -151,6 +155,43 @@ public class CheckModules extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void StudentListMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        Object[] student = LevelList.getSelectedValues();
+        List <Module> listOfStudentSelectedModules = new ArrayList<>();
+        List <Module> listOfDegreeOptionalModules = new ArrayList<>();
+        String creditsMessage = "";
+        
+        //Module Name
+        for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
+        	jTable1.setValueAt(listOfStudentSelectedModules.get(index).moduleName, index, 0);
+        }
+        
+        //Module Code
+        for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
+        	jTable1.setValueAt(listOfStudentSelectedModules.get(index).moduleCode, index, 0);
+        }
+        
+        //Credits
+        for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
+        	jTable1.setValueAt(listOfStudentSelectedModules.get(index).credits, index, 0);
+        }
+        
+      //Module Name
+        for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
+        	jTable1.setValueAt(listOfDegreeOptionalModules.get(index).moduleName, index, 0);
+        }
+        
+        //Module Code
+        for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
+        	jTable1.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 0);
+        }
+        
+        //Credits
+        for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
+        	jTable1.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 0);
+        }
+    } 
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.setVisible(false);
