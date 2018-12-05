@@ -95,7 +95,7 @@ public static boolean addModule(String code, String name, int credits, String se
      * @param degreeName
      * @return
      */
-    public static boolean addModulesToLevelOfDegree(String level, String degreeName, List<String> coreModuleName, List<String> optionalModuleName) {
+    public static boolean addModulesToLevelOfDegree(String level, String degreeName, Object[] coreModuleName, Object[] optionalModuleName) {
 		Connection con = null;
 		PreparedStatement pstmtM = null; // used to insert module-(level-degree) association
 		PreparedStatement pstmtQ = null; // used to make queries
@@ -110,7 +110,9 @@ public static boolean addModule(String code, String name, int credits, String se
 	        pstmtU = con.prepareStatement("UPDATE ModuleOfLevelOfDegree SET isCore = TRUE WHERE moduleName = ? AND degreeName = ? AND level = ?");
 	        
 	        //Insert all optional modules into the ModuleOfLevelOfDegree table if they're not already in there
-	        for(String opModuleName : optionalModuleName) {
+	        for(Object opModuleNamee : optionalModuleName) {
+	        	String opModuleName = (String) opModuleNamee;
+	        	System.out.println("Before if: "+opModuleName);
 	        	//Check if this (level-degree) - module association is already in the table
 	        	pstmtQ.setString(1, opModuleName);
 	        	pstmtQ.setString(2, degreeName);
@@ -120,6 +122,7 @@ public static boolean addModule(String code, String name, int credits, String se
 	        	res.next();
 	        	//If this (level-degree) - module association is NOT already in the table
 	        	if(res.getInt(1)==0) {
+	        		System.out.println("After if: "+opModuleName);
 	        		//Insert the association into the table, else do nothing
 	        		pstmtM.setString(1, degreeName);
 	        		pstmtM.setString(2, opModuleName);
@@ -131,7 +134,8 @@ public static boolean addModule(String code, String name, int credits, String se
         		res.close();
 	        }
 	      //Insert all core modules into the ModuleOfLevelOfDegree table if they're not already in there
-	        for(String crModuleName : coreModuleName) {
+	        for(Object crModuleNamee : coreModuleName) {
+	        	String crModuleName = (String) crModuleNamee;
 	        	//Check if this (level-degree) - module association is already in the table
 	        	pstmtQ.setString(1, crModuleName);
 	        	pstmtQ.setString(2, degreeName);
@@ -311,7 +315,56 @@ public static boolean addModule(String code, String name, int credits, String se
 		}
 		return true;
     }
-    public static boolean removeModulesFromLevelOfDegree(List<String> modules, String level, String degreeName) {
+    public static boolean removeModule(Object[] modulesArray) {
+    	Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+	        pstmt = con.prepareStatement("DELETE FROM Module WHERE moduleName = ?");
+	        
+	        for(Object o : modulesArray) {
+	        	String moduleName = (String) o;
+	        	pstmt.setString(1, moduleName);
+	        	pstmt.executeUpdate();
+	        	pstmt.clearParameters();
+	        }
+	        	   
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    	return false;
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}	
+		}
+		return true;
+    }
+    
+    public static boolean removeModulesFromLevelOfDegree(Object[] modules, String level, String degreeName) {
     	Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet res = null;
@@ -321,7 +374,8 @@ public static boolean addModule(String code, String name, int credits, String se
 	        pstmt = con.prepareStatement("DELETE FROM ModuleOfLevelOfDegree WHERE moduleName = ? AND level = ? AND degreeName = ?;");
 	        
 	        //Iterates through the list of moduleNames and removes modules from the table
-	        for(String mod : modules) {
+	        for(Object modo : modules) {
+	        	String mod = (String) modo;
 	        	pstmt.setString(1, mod);
 	        	pstmt.setString(2, level);
 	        	pstmt.setString(3, degreeName);
@@ -359,22 +413,77 @@ public static boolean addModule(String code, String name, int credits, String se
 		}
 		return true;
     }
+    /**
+     * Returns a list of Module objects containing every row as a module in the Module table.
+     * @return List<Module> represents every row in the Module table.
+     */
+    public static List<Module> getModules(){
+    	Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		List<Module> l = new ArrayList<>(); // list that will contain every row in the Module table 
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+	        pstmt = con.prepareStatement("SELECT * FROM Module");
+	        res = pstmt.executeQuery();
+	        while(res.next()) {
+	        	int credits = res.getInt("credits");
+	        	String moduleName = res.getString("moduleName");
+	        	String moduleCode = res.getString("moduleCode");
+	        	String sessionOfStudy = res.getString("sessionOfStudy");
+	        	String departmentName = res.getString("departmentName");
+	        	l.add(new Module(moduleCode,moduleName,sessionOfStudy,departmentName,credits));
+	        }
+	           
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+		}
+		return l;
+    	
+    }
+    public static String[] getModuleNames() {
+    	List<Module> moduleList = getModules();
+    	String[] modNameArray = new String[moduleList.size()];
+    	int counter = 0;
+    	for(Module m : moduleList) {
+    		modNameArray[counter] = m.moduleName;
+    		counter++;
+    	}
+    	return modNameArray;
+    }
+    
     //Let's think about associating a module with a Student;
     public static void main(String args[]) {
-    	List<String> op = new ArrayList<>();
-    	List<String> cr = new ArrayList<>();
-    	ModuleController.addModule("COM2108", "Functional Programming", 10, "Autumn", "Computer Science");
-    	ModuleController.addModule("COM2008", "System Design and Security", 20, "Autumn", "Computer Science");
-    	ModuleController.addModule("COM2004", "Big data", 20, "Autumn", "Computer Science");
-    	ModuleController.addModule("COM1002", "Foundations of Computer Science", 10, "Autumn", "Computer Science");
-    	op.add("Functional Programming");
-    	op.add("System Design and Security");
-    	cr.add("Big data");
-    	cr.add("Foundations of Computer Science");
-    	addModulesToLevelOfDegree("2", "Degree1", cr, op);
-    	//Remove bigData
-    	List<String> modules = new ArrayList<>();
     	
-    	
+    	String[] s = getModuleNames();
+    	for(String st: s)
+    		System.out.println(st);
     }
 }

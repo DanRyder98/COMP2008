@@ -196,6 +196,54 @@ public class DepartmentController {
 		}
 		return true;
     }
+    public static boolean removeDepartment(Object[] departments) {
+    	Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+	        pstmt = con.prepareStatement("DELETE FROM Department WHERE departmentName = ? ");
+	        
+	        for(Object o:departments) {
+	        	String departmentName = (String) o;
+	        	pstmt.setString(1, departmentName);
+	        	pstmt.executeUpdate();
+	        	pstmt.clearParameters();
+	        }
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    	return false;
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}	
+		}
+		return true;
+    }
+    
     public static void main(String args[]) {
     	removeDepartment("Computer Science");
     }

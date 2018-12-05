@@ -28,8 +28,7 @@ public class UsersController {
  * @version 1.0
  * @since 12-01-2018
  */
-public static boolean addAccount(int id,String username, String password, String role) {
-	
+public static boolean addAccount(String id,String username, String password, String role) {
     	Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet res = null;
@@ -53,7 +52,7 @@ public static boolean addAccount(int id,String username, String password, String
 	        //Check if the student id is unique
 	        pstmt = con.prepareStatement("SELECT COUNT(*) FROM Users WHERE id = ?");
 	        //Set value of ? placeholders
-	        pstmt.setInt(1, id);
+	        pstmt.setString(1, id);
 	        //Fire the PreparedStatement
 	        res = pstmt.executeQuery();
 	        res.next();
@@ -65,7 +64,7 @@ public static boolean addAccount(int id,String username, String password, String
 	        //Insert the account into the Users table
 	        pstmt = con.prepareStatement("INSERT INTO Users (id,username,password,role) VALUES (?,?,?,?)");
 	        //Set value of ? placeholders
-	        pstmt.setInt(1, id);
+	        pstmt.setString(1, id);
 	        pstmt.setString(2, username);
 	        pstmt.setString(3, password);
 	        pstmt.setString(4, role);
@@ -105,13 +104,85 @@ public static boolean addAccount(int id,String username, String password, String
 		return true;
     }
 /**
+ * Overloads addAccount. Used when the id is not specified. In the case of Admins, Registrars and Teachers
+ * @param id
+ * @param username
+ * @param password
+ * @param role
+ * @return
+ */
+public static boolean addAccount(String username, String password, String role) {
+
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet res = null;
+	//The try block that closes the Connection, PreparedStatement and ResultSet  if there's a runtime error.
+	try {
+        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");
+        
+        //Check if the username is unique
+        pstmt = con.prepareStatement("SELECT COUNT(*) FROM Users WHERE username = ?");
+        //Set value of ? placeholders
+        pstmt.setString(1, username);
+        //Fire the PreparedStatement
+        res = pstmt.executeQuery();
+        res.next();
+        //Check if there's any row with that username
+        if(res.getInt(1)!=0)
+        	return false;
+        pstmt.close();
+        res.close();
+        
+        pstmt.close();
+        //Insert the account into the Users table
+        pstmt = con.prepareStatement("INSERT INTO Users (username,password,role) VALUES (?,?,?)");
+        //Set value of ? placeholders
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
+        pstmt.setString(3, role);
+        //Fire the PreparedStatement
+        pstmt.executeUpdate();
+    }
+    catch(SQLException ex) {
+    	ex.printStackTrace();
+    	return false;
+    }
+	finally{
+		if(res!=null) 
+			try {
+			res.close();
+			}
+			catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		
+		if(pstmt!=null) 
+			try {
+			pstmt.close();
+			}
+			catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		
+		if(con!=null) 
+			try {
+			con.close();
+			}
+			catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		
+	}
+	return true;
+}
+/**
  * Function that, when given an id, returns an user from the Users table that had that id.
  * 
  * @param id
  * @return boolean Tells if the removing of the account was successfull. Even if the account isn't in the database it still returns true. Could
  * Change that.
  */
-    public static boolean removeAccount(int id) {
+    public static boolean removeAccount(String username) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet res = null;
@@ -119,8 +190,8 @@ public static boolean addAccount(int id,String username, String password, String
 		try {
 	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	
 	        
-	        pstmt = con.prepareStatement("DELETE FROM Users WHERE id = ?");
-	        pstmt.setInt(1, id);
+	        pstmt = con.prepareStatement("DELETE FROM Users WHERE username = ?");
+	        pstmt.setString(1, username);
 	        pstmt.executeUpdate();
 	        
 	    }

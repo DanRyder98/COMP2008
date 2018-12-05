@@ -26,7 +26,7 @@ public class DegreeController {
      * @return
      */
 	//TO DO: Introduce another parameter to addDegree: int maxLevel and boolean hasYearInIndustry. So that you can populate the LevelOfDegree table
-    public static boolean addDegree(String name,String code,List<String> deps,List<String> leadDeps){
+    public static boolean addDegree(String name,String code,Object[] deps,Object[] leadDeps){
 	    
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -46,7 +46,8 @@ public class DegreeController {
 	        }
 	                 	        
 	        //Adds all the associations between the degree and departments from deps
-	        for(String s:deps) {
+	        for(Object o:deps) {
+	        	String s = (String) o;
 		        //Insert only if the association beteween the degree and this deperatment is NOT in the table
 		        if(!isInDegreeOfDepartment(name,s)) {		        
 		            //Insert degree-department association into the DegreeOfDepartment table
@@ -76,9 +77,9 @@ public class DegreeController {
 	        pstmt.close();
 	        //Checks if the Lead Department-degree association is already in the table
 	        //If it's already in the table, update to lead if it's not lead already, leave as is if it is lead.
-	        if(isInDegreeOfDepartment(name,leadDeps.get(0))) {
+	        if(isInDegreeOfDepartment(name,(String)leadDeps[0])) {
 	        	pstmt = con.prepareStatement("UPDATE DegreeOfDepartment SET isLead = TRUE WHERE departmentName = ? AND degreeName = ?;");
-	        	pstmt.setString(1, leadDeps.get(0));
+	        	pstmt.setString(1,(String) leadDeps[0]);
 	        	pstmt.setString(2, name);
 	        	pstmt.executeUpdate();
 	        }
@@ -86,7 +87,7 @@ public class DegreeController {
 	            //If it's not in the table, insert it as lead.
 	            pstmt = con.prepareStatement("INSERT INTO DegreeOfDepartment (degreeName,departmentName,isLead) VALUES (?,?,?)");
 	            pstmt.setString(1, name);
-	            pstmt.setString(2, leadDeps.get(0));
+	            pstmt.setString(2, (String)leadDeps[0]);
 	            pstmt.setBoolean(3, true);
 	            pstmt.executeUpdate();
 	        }
@@ -121,6 +122,114 @@ public class DegreeController {
 					ex.printStackTrace();
 				}
 		}
+		return true;
+    }
+    /**
+     * Overloading addDegree. For when someone specifies its maxlevel and if it's a year in industry
+     * @param name
+     * @param code
+     * @param deps
+     * @param leadDeps
+     * @return
+     */
+public static boolean addDegree(String name,String code,Object[] deps,Object[] leadDeps, Object[] maxLevel, boolean isYearInIndustry){
+	    //Initialising levels of degree
+	    
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+	    
+	        //If it's not already in the Degree table then insert
+	        if(!isInDegreeTable(name)) {
+	            //Add degree to the Degree table
+	            pstmt = con.prepareStatement("INSERT INTO Degree (degreeName,degreeCode) VALUES (?,?);");
+	            pstmt.setString(1, name);
+	            pstmt.setString(2, code);
+	            pstmt.executeUpdate();
+	            pstmt.close();
+	        }
+	                 	        
+	        //Adds all the associations between the degree and departments from deps
+	        for(Object o:deps) {
+	        	String s = (String) o;
+		        //Insert only if the association beteween the degree and this deperatment is NOT in the table
+		        if(!isInDegreeOfDepartment(name,s)) {		        
+		            //Insert degree-department association into the DegreeOfDepartment table
+		            pstmt = con.prepareStatement("INSERT INTO DegreeOfDepartment (degreeName,departmentName,isLead) VALUES (?,?,?)");	        
+	        	    pstmt.setString(1, name);
+	        	    pstmt.setString(2, s);
+	            	pstmt.setBoolean(3, false);
+	        	    pstmt.executeUpdate();
+	        	    pstmt.close();
+	            }
+	        }
+	        //Checks if the degree already has a Lead department
+	        pstmt = con.prepareStatement("SELECT departmentName FROM DegreeOfDepartment WHERE degreeName = ? AND isLead = TRUE;");
+	        pstmt.setString(1, name);
+	        res = pstmt.executeQuery();
+	        
+	        //If degree already has a lead department, change that relationship to a nonLead.
+	        if(res.next()) {
+	        	String leadDepartment = res.getString(1);
+	        	pstmt.close();
+	        	pstmt = con.prepareStatement("UPDATE DegreeOfDepartment SET isLead = FALSE WHERE departmentName = ? AND degreeName = ?;");
+	        	pstmt.setString(1, leadDepartment);
+	        	pstmt.setString(2, name);
+	        	pstmt.executeUpdate();
+	        }
+	        res.close();
+	        pstmt.close();
+	        //Checks if the Lead Department-degree association is already in the table
+	        //If it's already in the table, update to lead if it's not lead already, leave as is if it is lead.
+	        if(isInDegreeOfDepartment(name,(String)leadDeps[0])) {
+	        	pstmt = con.prepareStatement("UPDATE DegreeOfDepartment SET isLead = TRUE WHERE departmentName = ? AND degreeName = ?;");
+	        	pstmt.setString(1, (String) leadDeps[0]);
+	        	pstmt.setString(2, name);
+	        	pstmt.executeUpdate();
+	        }
+	        else {
+	            //If it's not in the table, insert it as lead.
+	            pstmt = con.prepareStatement("INSERT INTO DegreeOfDepartment (degreeName,departmentName,isLead) VALUES (?,?,?)");
+	            pstmt.setString(1, name);
+	            pstmt.setString(2, (String) leadDeps[0]);
+	            pstmt.setBoolean(3, true);
+	            pstmt.executeUpdate();
+	        }
+	       
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    	return false;
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+		}
+		initLevelsOfDegree((String)maxLevel[0], name, isYearInIndustry);
 		return true;
     }
     /**
@@ -243,7 +352,7 @@ public class DegreeController {
      * @param degreeName
      * @return
      */
-    public static boolean removeDegree(String degreeName) {
+    public static boolean removeDegree(Object[] degreeArr) {
     	Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet res = null;
@@ -252,8 +361,12 @@ public class DegreeController {
 	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	
 	        
 	        pstmt = con.prepareStatement("DELETE FROM Degree WHERE degreeName = ?");
+	        for(Object o : degreeArr) {
+	        String degreeName = (String) o;
 	        pstmt.setString(1, degreeName);
 	        pstmt.executeUpdate();
+	        pstmt.clearParameters();
+	        }
 	        
 	    }
 	    catch(SQLException ex) {
@@ -289,7 +402,7 @@ public class DegreeController {
 		return true;
 
     }
-    public static boolean removeDegreeDepartmentAssociation(String degreeName, List<String> departments) {
+    public static boolean removeDegreeDepartmentAssociation(String degreeName, Object[] departments) {
     	Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet res = null;
@@ -298,7 +411,8 @@ public class DegreeController {
 	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
 	        pstmt = con.prepareStatement("DELETE FROM DegreeOfDepartment WHERE degreeName = ? AND departmentName = ?;");
 	        
-	        for(String departmentName:departments) {
+	        for(Object departmentNameO:departments) {
+	        	String departmentName = (String) departmentNameO;
 	        	pstmt.setString(1, degreeName);
 	        	pstmt.setString(2, departmentName);
 	        	pstmt.executeUpdate();
@@ -390,6 +504,77 @@ public class DegreeController {
 		}
 		return l;
     }
+    public static boolean initLevelsOfDegree(String level, String degreeName, boolean isYearInIndustry) {
+    	// Convert level to int
+    	int lvl = Integer.parseInt(level);
+    	Connection con = null;
+		PreparedStatement pstmtI = null; // PreparedStatement used for an insert
+		PreparedStatement pstmtD = null; // PreparedStatement used for a delete
+		ResultSet res = null;
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+	        pstmtI = con.prepareStatement("INSERT INTO LevelOfDegree (level,degreeName) VALUES (?,?)");
+	        pstmtD = con.prepareStatement("DELETE FROM LevelOfDegree WHERE degreeName = ?");
+	        
+	        //Delete any previous levelOfDegree rows associated with this degree
+	        pstmtD.setString(1, degreeName);
+	        pstmtD.executeUpdate();
+	        
+	        //Initialise levels of degree
+	        for(int i = 1;i<=lvl;i++) {
+	        	pstmtI.setString(1, Integer.toString(i));
+	        	pstmtI.setString(2, degreeName);
+	        	pstmtI.executeUpdate();
+	        	pstmtI.clearParameters();
+	        }
+	        pstmtI.close();
+	        if(isYearInIndustry) {
+	            pstmtI = con.prepareStatement("INSERT INTO LevelOfDegree (level,degreeName) VALUES ('P',?)");
+	            pstmtI.setString(1, degreeName);
+	            pstmtI.executeUpdate();
+	        }
+	        
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    	return false;
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmtI!=null) 
+				try {
+				pstmtI.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			if(pstmtD!=null) 
+				try {
+				pstmtD.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+		}
+		return true;
+    }
     public static String[] getDegreeNameAsString() {
     	List<Degree> l =getDegrees();
     	String[] arr = new String[l.size()];
@@ -403,8 +588,8 @@ public class DegreeController {
     
     
     public static void main(String args[]) {
-        String[] arr = getDegreeNameAsString();
-    	for(String s:arr)
-    		System.out.println(s);
+       
+    	DegreeController.initLevelsOfDegree("1", "Degree1", false);
     }
+   
 }
