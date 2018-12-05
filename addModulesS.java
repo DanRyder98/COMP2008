@@ -14,7 +14,7 @@ public class addModulesS extends JFrame {
 	 setLocation(0, 0);
 	 setDefaultCloseOperation(EXIT_ON_CLOSE);
 	 
-	//create the container and setlayout
+	 //create the container and setlayout
 	 Container contentPane = getContentPane();
 	 contentPane.setLayout(new FlowLayout());
 	 

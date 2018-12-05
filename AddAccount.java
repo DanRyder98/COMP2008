@@ -250,7 +250,11 @@ public class AddAccount extends javax.swing.JFrame {
         boolean success;
         boolean errorResults = CheckErrors();
         if(errorResults) {
-            success = UsersController.addAccount(studentNumber, username, password, role);
+        	if(role == "Student")
+                success = UsersController.addAccount(studentNumber, username, password, role);
+        	else
+        		success = UsersController.addAccount(username, password, role);
+        	
             CheckSuccess(success);
         }
     }//GEN-LAST:event_AddAccountButtonActionPerformed

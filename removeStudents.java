@@ -1,6 +1,8 @@
 package Admin;
 import javax.swing.JOptionPane;
 
+import database2.StudentController;
+
 /**
  *
  * @author Daniel Ryder
@@ -142,8 +144,8 @@ public class removeStudents extends javax.swing.JFrame {
    	 }else if(UsernameTextField.getText().length()>9||UsernameTextField.getText().length()>9) {
 		 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 	 }else {
-		 //enter code here
-		 //CheckSuccess();//enter value
+		 boolean success = StudentController.removeStudent(UsernameTextField.getText());
+		 CheckSuccess(success);
 	 }
     	
     }                                          

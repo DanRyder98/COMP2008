@@ -88,7 +88,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
 
         TeachingTimeList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         TeachingTimeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Autunm", "Spring", "Summer", "All-year" };
+            String[] strings = { "Autumn", "Spring", "Summer", "Year long" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });

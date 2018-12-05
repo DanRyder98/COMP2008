@@ -124,7 +124,7 @@ public class CheckModules extends javax.swing.JFrame {
         jScrollPane4.setViewportView(OptionalModulesTable);
 
         OptionalModulesLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        OptionalModulesLabel.setText("Optional Modules:");
+        OptionalModulesLabel.setText("Optional Modules for the student's degree:");
         OptionalModulesLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
         SelectedModulesLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -242,7 +242,7 @@ public class CheckModules extends javax.swing.JFrame {
     private void StudentTableMouseClicked(java.awt.event.MouseEvent evt) {
        
     	Student student = listOfStudents.get(StudentTable.getSelectedRow());
-        List <Module> listOfStudentSelectedModules = testTables.getModuleList(student.forename);
+        List <Module> listOfStudentSelectedModules = StudentController.showSelectedModulesOfStudent(student.registrationNumber);
         List <Module> listOfDegreeOptionalModules = testTables.getModuleList(student.forename);
         String creditsMessage = "Good stuff";
         CreditsMessageLabel.setText(creditsMessage);

@@ -1,5 +1,6 @@
 package Admin;
 
+import database2.UsersController;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -126,7 +127,19 @@ public class LoggingIn extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         this.setVisible(false);
-        new HomePageAdministrator().setVisible(true);
+        String username = jTextField1.getText();
+        String password = jTextField2.getText();
+        String role = UsersController.login(username, password);
+        
+        this.setVisible(false);
+        switch (role) {
+        	case "Student": new StudentShowGrades().setVisible(true);break;
+        	case "Administrator": new HomePageAdministrator().setVisible(true);break;
+        	case "Regitrar": new homepageR("Registrar Home Page").setVisible(true);break;
+        	case "Teacher": new homepageT("Teacher Home Page").setVisible(true);break;
+        	default: this.setVisible(true);
+        }
+        
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     /**

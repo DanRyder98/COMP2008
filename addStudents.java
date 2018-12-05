@@ -187,7 +187,7 @@ public class addStudents extends javax.swing.JFrame {
 			 JOptionPane.showMessageDialog(null,"please fill all fields");
 		 } else if(RegNumberTextField.getText().length()>9||RegNumberTextField.getText().length()>9) {
 			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
-		 }else {
+		 }else {// database code:
 			 String degreeName = (String)DegreeComboBox.getSelectedItem();
 			 String registrationNumber = RegNumberTextField.getText();
 			 String surname = SurnameTextField.getText();
@@ -196,6 +196,7 @@ public class addStudents extends javax.swing.JFrame {
 			 String universityEmail = UniEmailTextField.getText();
 			 String personalTutor = PTutorTextField.getText();
 			 CheckSuccess(StudentController.addStudent(registrationNumber, surname, forename, title, degreeName, universityEmail, personalTutor));
+			 //
 		 }
     
     }                                                
