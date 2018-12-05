@@ -1,4 +1,3 @@
-package Admin;
 //home page for Teacher
 
 import java.awt.*;
@@ -26,7 +25,7 @@ public class homepageT extends JFrame{
         private void initComponents() {
 
             jLabel2 = new javax.swing.JLabel();
-            jButton1 = new javax.swing.JButton();
+            
             jButton2 = new javax.swing.JButton();
             jButton3 = new javax.swing.JButton();
             jButton4 = new javax.swing.JButton();
@@ -40,14 +39,7 @@ public class homepageT extends JFrame{
             jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
             jLabel2.setText("Teacher");
 
-            jButton1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-            jButton1.setText("Add Grades");
-            jButton1.setToolTipText("Add initial/ressit/repeat grades");
-            jButton1.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButton1ActionPerformed(evt);
-                }
-            });
+            
 
             jButton2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
             jButton2.setText("Update Grades");
@@ -106,7 +98,6 @@ public class homepageT extends JFrame{
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,7 +115,6 @@ public class homepageT extends JFrame{
                     .addGap(46, 46, 46)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(160, 160, 160)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(18, 18, 18)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(18, 18, 18)
@@ -174,7 +164,7 @@ public class homepageT extends JFrame{
 		 
 	}
          
-        private javax.swing.JButton jButton1;
+        
         private javax.swing.JButton jButton2;
         private javax.swing.JButton jButton3;
         private javax.swing.JButton jButton4;
