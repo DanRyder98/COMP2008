@@ -1,9 +1,7 @@
 package Admin;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import database.Module;
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -23,11 +21,13 @@ public class CheckModules extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         StudentLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        LevelList = new javax.swing.JList<>();
+        StudentList = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        SelectedModulesTable = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        OptionalModulesTable = new javax.swing.JTable();
+        OptionalModulesLabel = new javax.swing.JLabel();
+        SelectedModulesLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,17 +50,24 @@ public class CheckModules extends javax.swing.JFrame {
         StudentLabel.setText("Student:");
         StudentLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
-        //This should be called student list I'll change it
-        LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = {"student1","student2","student3"};
+        StudentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        StudentList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3", "4", "5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        LevelList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane3.setViewportView(LevelList);
+        StudentList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        StudentList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StudentListMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                StudentListMousePressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(StudentList);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        SelectedModulesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -68,21 +75,27 @@ public class CheckModules extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-            		//THESE WILL BE THE COLUMN TITLES WHATEVER ORDER YOU WANT
-                "Title 1", "Title 2", "Title 3"
+                "Module Name", "Module Code", "Credits"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(SelectedModulesTable);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        OptionalModulesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -90,18 +103,33 @@ public class CheckModules extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Module Name, Module Code, Credits"
+                "Module Name", "Module Code", "Credits"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane4.setViewportView(OptionalModulesTable);
+
+        OptionalModulesLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        OptionalModulesLabel.setText("Optional Modules:");
+        OptionalModulesLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
+
+        SelectedModulesLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        SelectedModulesLabel.setText("Selected Modules:");
+        SelectedModulesLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,9 +152,15 @@ public class CheckModules extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SelectedModulesLabel))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(OptionalModulesLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -136,18 +170,16 @@ public class CheckModules extends javax.swing.JFrame {
                 .addComponent(RegistrarLabel)
                 .addGap(44, 44, 44)
                 .addComponent(CheckModulesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(OptionalModulesLabel)
+                    .addComponent(SelectedModulesLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(StudentLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StudentLabel)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(BackButton)
                 .addContainerGap())
@@ -155,8 +187,17 @@ public class CheckModules extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void StudentListMouseClicked(java.awt.event.MouseEvent evt) {                                         
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        this.setVisible(false);
+        new homepageR("Registrar menu").setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void StudentListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StudentListMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StudentListMousePressed
+
+    private void StudentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StudentListMouseClicked
         Object[] student = LevelList.getSelectedValues();
         List <Module> listOfStudentSelectedModules = new ArrayList<>();
         List <Module> listOfDegreeOptionalModules = new ArrayList<>();
@@ -164,39 +205,34 @@ public class CheckModules extends javax.swing.JFrame {
         
         //Module Name
         for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
-        	jTable1.setValueAt(listOfStudentSelectedModules.get(index).moduleName, index, 0);
+        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).moduleName, index, 0);
         }
         
         //Module Code
         for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
-        	jTable1.setValueAt(listOfStudentSelectedModules.get(index).moduleCode, index, 0);
+        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).moduleCode, index, 0);
         }
         
         //Credits
         for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
-        	jTable1.setValueAt(listOfStudentSelectedModules.get(index).credits, index, 0);
+        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).credits, index, 0);
         }
         
       //Module Name
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	jTable1.setValueAt(listOfDegreeOptionalModules.get(index).moduleName, index, 0);
+        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleName, index, 0);
         }
         
         //Module Code
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	jTable1.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 0);
+        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 0);
         }
         
         //Credits
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	jTable1.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 0);
+        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 0);
         }
-    } 
-
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        this.setVisible(false);
-        new homepageR("Registrar menu").setVisible(true);
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }//GEN-LAST:event_StudentListMouseClicked
 
     public static void main(String args[]) {
         try {
@@ -226,13 +262,15 @@ public class CheckModules extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel CheckModulesLabel;
-    private javax.swing.JList<String> LevelList;
+    private javax.swing.JLabel OptionalModulesLabel;
+    private javax.swing.JTable OptionalModulesTable;
     private javax.swing.JLabel RegistrarLabel;
+    private javax.swing.JLabel SelectedModulesLabel;
+    private javax.swing.JTable SelectedModulesTable;
     private javax.swing.JLabel StudentLabel;
+    private javax.swing.JList<String> StudentList;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 }
