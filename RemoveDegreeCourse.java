@@ -57,7 +57,11 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         ExistingCoursesLabel.setText("Existing Courses:");
 
         ExistingCoursesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        ExistingCoursesList.setModel(DegreeController.getDegreeNameAsString());
+        ExistingCoursesList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         ExistingCoursesList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(ExistingCoursesList);
 

@@ -77,7 +77,11 @@ public class AddModulesOverall extends javax.swing.JFrame {
         DepartmentsLabel.setText("Department(s):");
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        DepartmentList.setModel(DepartmentController.getDepartmentNames());
+        DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(DepartmentList);
 
         TeachingTimeLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N

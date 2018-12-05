@@ -88,7 +88,11 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         ModuleLabel.setText("Modules:");
 
         ModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        ModuleList.setModel(ModuleController.getModuleNames());
+        ModuleList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         ModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(ModuleList);
 
@@ -98,7 +102,11 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         CoreModuleLabel.setText("Core Modules:");
 
         CoreModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        CoreModuleList.setModel(ModuleController.getModuleNames());
+        CoreModuleList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         CoreModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(CoreModuleList);
 

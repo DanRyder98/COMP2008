@@ -43,7 +43,11 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
         FullNameOfDegreeLabel.setText("Full Name of Degree:");
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        DepartmentList.setModel(DepartmentController.getDepartmentNames());
+        DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(DepartmentList);
 
         DepartmentsLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N

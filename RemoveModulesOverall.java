@@ -57,7 +57,11 @@ public class RemoveModulesOverall extends javax.swing.JFrame {
         ModulesNamesLabel.setText("Module Names:");
 
         ModulesNamesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        ModulesNamesList.setModel(ModuleController.getModuleNames());
+        ModulesNamesList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1", "2", "3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(ModulesNamesList);
 
         OutputLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
