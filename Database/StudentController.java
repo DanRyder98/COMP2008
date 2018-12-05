@@ -1,4 +1,4 @@
-package database;
+package database2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -78,6 +78,64 @@ public static boolean addStudent(String registrationNumber,String surname, Strin
 		}
 		return true;
     }
+/**
+ * Gets all students from the Student table
+ */
+public static List<Student> getStudents() {
+    
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet res = null;
+	List<Student> l = new ArrayList<>();
+	//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+	try {
+        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+        pstmt = con.prepareStatement("SELECT * FROM Student");
+       	res = pstmt.executeQuery();
+       	
+       	while(res.next()) {
+       		String surname = res.getString("surname");
+       		String forename = res.getString("forename");
+       		String registrationNumber = res.getString("registrationNumber");
+       		String title = res.getString("title");
+       		String degreeName = res.getString("degreeName");
+       		String universityEmail = res.getString("universityEmail");
+       		String personalTutor = res.getString("personalTutor");
+       		l.add(new Student(registrationNumber,surname,forename, title, degreeName,universityEmail, personalTutor));
+       	}     	
+        	   
+    }
+    catch(SQLException ex) {
+    	ex.printStackTrace();
+    	
+    }
+	finally{
+		if(res!=null) 
+			try {
+			res.close();
+			}
+			catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		
+		if(pstmt!=null) 
+			try {
+			pstmt.close();
+			}
+			catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+		
+		if(con!=null) 
+			try {
+			con.close();
+			}
+			catch (SQLException ex) {
+				ex.printStackTrace();
+			}		
+	}
+	return l;
+}
 
     public static void main(String args[]) {
     	StudentController.addStudent("123456889", "Marwan","Daniel", "Mr", "Degree1", "abba@yahoo.com", "Jonathan");

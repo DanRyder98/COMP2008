@@ -1,4 +1,4 @@
-package database;
+package database2;
 /**
  * Class that represents a department
  */

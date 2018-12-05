@@ -1,5 +1,5 @@
 // Class that initialises the database tables.
-package database;
+package database2;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

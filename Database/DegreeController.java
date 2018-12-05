@@ -1,4 +1,4 @@
-package database;
+package database2;
 /**
  * Class used to interact with the Degree table and all the linker tables that associate with it
  * @author Andrei Tihoan

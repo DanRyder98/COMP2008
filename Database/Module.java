@@ -1,4 +1,4 @@
-package database;
+package database2;
 
 public class Module {
 	public String moduleCode;
