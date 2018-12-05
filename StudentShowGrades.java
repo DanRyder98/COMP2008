@@ -239,7 +239,7 @@ public class StudentShowGrades extends javax.swing.JFrame {
 
    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
        this.setVisible(false);
-       new ManageModules().setVisible(true);
+       new LoggingIn().setVisible(true);
    }                                          
 
    private void LevelListMouseClicked(java.awt.event.MouseEvent evt) {                                       
