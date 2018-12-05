@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -18,73 +17,108 @@ public class removeModulesS extends JFrame {
 	 Container contentPane = getContentPane();
 	 contentPane.setLayout(new FlowLayout());
 	 
-	 JLabel label = new JLabel ("Module Name ");
-	 contentPane.add(label, BorderLayout.NORTH);
+	 RegistrarLabel = new javax.swing.JLabel();
+     jScrollPane1 = new javax.swing.JScrollPane();
+     jScrollPane2 = new javax.swing.JScrollPane();
+     RemoveButton = new javax.swing.JButton();
+     BackButton = new javax.swing.JButton();
+
 	 
-	 
-	 textField1 = new javax.swing.JTextField(20);
-	 contentPane.add(textField1, BorderLayout.CENTER);
-	 
-	 JLabel label2 = new JLabel ("Module Code ");
-	 contentPane.add(label2, BorderLayout.NORTH);
-	 
-	 
-	  textField2 = new javax.swing.JTextField(20);
-	 contentPane.add(textField2, BorderLayout.CENTER);
-	 
-	 JLabel label3 = new JLabel ("Number of Credits ");
-	 contentPane.add(label3, BorderLayout.NORTH);
 	
 	 
-	  textField3 = new javax.swing.JTextField(20);
-	 contentPane.add(textField3, BorderLayout.CENTER);
+     StudentTable = new javax.swing.JTable();
+	 StudentTable.setModel(new javax.swing.table.DefaultTableModel(
+	            new Object [][] {
+	                {null, null, null, null},
+	                {null, null, null, null},
+	                {null, null, null, null},
+	                {null, null, null, null}
+	            },
+	            new String [] {
+	                "Title", "Surname", "Forename", "Registration Number"
+	            }
+	        ));
 	 
-	 JLabel label4 = new JLabel ("Student name ");
-	 contentPane.add(label4, BorderLayout.NORTH);
-	 
-	 
-	 textField4 = new javax.swing.JTextField(20);
-	 contentPane.add(textField4, BorderLayout.CENTER);
-	 
-	 JLabel label5 = new JLabel ("Registration number ");
-	 contentPane.add(label5, BorderLayout.NORTH);
-	 
-	 
-	  textField5 = new javax.swing.JTextField(20);
-	 contentPane.add(textField5, BorderLayout.CENTER);
-	 
-	 
-	 JButton button = new JButton("remove module");
-	 contentPane.add(button, BorderLayout.CENTER);
-	 
-	 JButton backbutton = new JButton("Back");
-	 contentPane.add(backbutton, BorderLayout.CENTER);
-	 
-	 
-	 
-	 button.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-             buttonActionPerformed(evt);
-             }
-         });
-	 backbutton.addActionListener(new java.awt.event.ActionListener() {
+	 ModuleTable = new javax.swing.JTable();
+	 ModuleTable.setModel(new javax.swing.table.DefaultTableModel(
+	            new Object [][] {
+	                {null, null, null, null},
+	                {null, null, null, null},
+	                {null, null, null, null},
+	                {null, null, null, null}
+	            },
+	            new String [] {
+	                "Module Name", "Module Code", "Degree", "Degree Code"
+	            }
+	        ));
+	 BackButton.setFont(new java.awt.Font("Verdana", 0, 18)); 
+     BackButton.setText("Back");
+     BackButton.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
              BackButtonActionPerformed(evt);
-             }
-	  });
+         }
+     });
+     
+     RemoveButton.setFont(new java.awt.Font("Verdana", 0, 18)); 
+     RemoveButton.setText("Remove");
+     RemoveButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+             RemoveButtonActionPerformed(evt);
+         }
+     });
+	 
+	 
+	 jScrollPane1.setViewportView(StudentTable);
+	 jScrollPane2.setViewportView(ModuleTable);
+
+     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+     getContentPane().setLayout(layout);
+     layout.setHorizontalGroup(
+         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(layout.createSequentialGroup()
+             .addComponent(RegistrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+             .addGap(83, 83, 83)
+             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+             .addComponent(RemoveButton)
+             .addContainerGap(94, Short.MAX_VALUE)
+         	.addComponent(BackButton))
+     );
+     layout.setVerticalGroup(
+         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+         	.addComponent(RegistrarLabel)
+             .addContainerGap(126, Short.MAX_VALUE)
+             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+             .addComponent(RemoveButton)
+             .addGap(87, 87, 87))
+         	.addComponent(BackButton)
+     );
+
+
+     pack();
+	 
+	
 	 setVisible(true);
 	 
 	 }
-	 private void buttonActionPerformed(java.awt.event.ActionEvent evt) {  
-		 if (textField1.getText().isEmpty() || textField2.getText().isEmpty() || textField3.getText().isEmpty() || textField4.getText().isEmpty() || textField5.getText().isEmpty()) {
-			 JOptionPane.showMessageDialog(null,"please fill all fields");
-		 } else if(textField5.getText().length()>9||textField5.getText().length()>9) {
-			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
-		 }else {
+	 private void RemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {  
+		
+		  
 			 //enter code here
-		 }
+			// CheckSuccess();//enter value
+		 
          
      }
+	 private void CheckSuccess(boolean success) {
+	        if (success) {
+	            JOptionPane.showMessageDialog(null,"Success");
+	        }
+	        else {
+	            JOptionPane.showMessageDialog(null,"SQl error");
+	        }
+	    }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
 		 this.setVisible(false);
 	        new homepageR("homepage").setVisible(true);
@@ -92,9 +126,12 @@ public class removeModulesS extends JFrame {
 	 public static void main(String[] args) {
 		 new removeModulesS("Removing module for a student");
 	 }
-	    private javax.swing.JTextField textField1;
-	    private javax.swing.JTextField textField2;
-	    private javax.swing.JTextField textField3;
-	    private javax.swing.JTextField textField4;
-	    private javax.swing.JTextField textField5;
+	    private javax.swing.JLabel RegistrarLabel;
+	    private javax.swing.JScrollPane jScrollPane1;
+	    private javax.swing.JScrollPane jScrollPane2;
+	    private javax.swing.JButton RemoveButton;
+	    private javax.swing.JButton BackButton;
+	    private javax.swing.JTable StudentTable;
+	    private javax.swing.JTable ModuleTable;
+
 }

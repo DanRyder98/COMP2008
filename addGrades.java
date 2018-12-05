@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -33,8 +32,8 @@ public class addGrades extends JFrame {
 	 contentPane.add(textField2, BorderLayout.CENTER);
 	 
 	 
-	 JLabel label4 = new JLabel ("Student name ");
-	 contentPane.add(label4, BorderLayout.NORTH);
+	 //JLabel label4 = new JLabel ("Student name ");
+	 //contentPane.add(label4, BorderLayout.NORTH);
 	 
 	 
 	 textField4 = new javax.swing.JTextField(20);
@@ -80,9 +79,19 @@ public class addGrades extends JFrame {
 			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 		 }else {
 			 //enter code here
+	        CheckSuccess();// enter value
+	       
 		 }
          
      }
+	 private void CheckSuccess(boolean success) {
+	        if (success) {
+	            JOptionPane.showMessageDialog(null,"Success");
+	        }
+	        else {
+	            JOptionPane.showMessageDialog(null,"SQl error");
+	        }
+	    }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
 	        this.setVisible(false);
 	        new homepageT("homepage").setVisible(true);

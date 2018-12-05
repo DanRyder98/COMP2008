@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -49,7 +48,7 @@ public class removeStudents extends javax.swing.JFrame {
         NewUserDetailsLabel.setText("Student to remove:");
 
         UsernameLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        UsernameLabel.setText("Username:");
+        UsernameLabel.setText("Registration number:");
 
         UsernameTextField.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         UsernameTextField.setSelectionColor(new java.awt.Color(255, 102, 102));
@@ -140,12 +139,23 @@ public class removeStudents extends javax.swing.JFrame {
         // TODO add your handling code here:
     	if (UsernameTextField.getText().isEmpty()) {
    		 JOptionPane.showMessageDialog(null,"please fill all fields");
-   	 }
+   	 }else if(UsernameTextField.getText().length()>9||UsernameTextField.getText().length()>9) {
+		 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
+	 }else {
+		 //enter code here
+		 CheckSuccess();//enter value
+	 }
+    	
     }                                          
 
-    /**
-     * @param args the command line arguments
-     */
+    private void CheckSuccess(boolean success) {
+        if (success) {
+            JOptionPane.showMessageDialog(null,"Success");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"SQl error");
+        }
+    }
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

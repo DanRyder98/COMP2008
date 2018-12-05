@@ -1,4 +1,4 @@
-package Admin;
+
 
 
 public class ViewStudents extends javax.swing.JFrame {
@@ -23,7 +23,7 @@ public class ViewStudents extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+       
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -33,7 +33,7 @@ public class ViewStudents extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Registration Number", "Surname", "Forename", "Title","Degree Name","University Email","Personal Tutor"
             }
         ));
         

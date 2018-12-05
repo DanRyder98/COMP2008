@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -60,6 +59,7 @@ public class manageSearch extends JFrame {
 			 new manageStudents().setVisible(true);
          
      }
+	 
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
 		 this.setVisible(false);
 	        new homepageR("homepage").setVisible(true);

@@ -1,4 +1,3 @@
-package Admin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -81,9 +80,18 @@ public class updateGrade extends JFrame {
 			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 		 }else {
 			 //enter code here
+			 CheckSuccess();
 		 }
          
      }
+	 private void CheckSuccess(boolean success) {
+	        if (success) {
+	            JOptionPane.showMessageDialog(null,"Success");
+	        }
+	        else {
+	            JOptionPane.showMessageDialog(null,"SQl error");
+	        }
+	    }
 	 private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
 	        this.setVisible(false);
 	        new homepageT("homepage").setVisible(true);
