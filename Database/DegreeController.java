@@ -504,6 +504,86 @@ public static boolean addDegree(String name,String code,Object[] deps,Object[] l
 		}
 		return l;
     }
+    public static List<Module> showOptionalModules(String registrationNumber){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		List<Module> modules = new ArrayList<>();
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	  
+	        // Student : I have a degree. I can look through the modulesOfLevelOfDegree, if I'm also given a max level, I can find all the modules
+	        // for the latest level of this student's degree.
+	        pstmt = con.prepareStatement("SELECT degreeName FROM Student WHERE registrationNumber = ?");
+	        pstmt.setString(1, registrationNumber);
+	        res = pstmt.executeQuery();
+	        res.next();
+	        //Got this student's degree
+	        String degreeName = res.getString("degreeName");
+	        System.out.println(degreeName);
+	        
+	        pstmt.close();
+	        res.close();
+	        
+	        // Get his max level
+	        String maxLabel = StudentController.maxPeriod(registrationNumber);
+	        pstmt = con.prepareStatement("SELECT level FROM PeriodOfStudy WHERE label = ?");
+	        pstmt.setString(1, maxLabel);
+	        res = pstmt.executeQuery();
+	        res.next();
+	        String maxLevel = res.getString("level");
+	        System.out.println(maxLevel);
+	        res.close();
+	        pstmt.close();
+	        
+	        //Look for all the optional modules of the level of that degree
+	        pstmt = con.prepareStatement("SELECT Module.moduleName,moduleCode,credits FROM ModuleOfLevelOfDegree,Module "+
+	                                     " WHERE  Module.moduleName = ModuleOfLevelOfDegree.moduleName "+
+	                                     " AND level = ? AND degreeName = ? AND isCore = FALSE;");
+	        pstmt.setString(1, maxLevel);
+	        pstmt.setString(2, degreeName);
+	        res = pstmt.executeQuery();
+	        //Iterate through each module and add to the modules list        
+	        
+	        while (res.next()){
+	        	String moduleName = res.getString("moduleName");
+	        	String moduleCode = res.getString("moduleCode");
+	        	int credits = res.getInt("credits");
+	        	modules.add(new Module(moduleCode,moduleName,credits));
+	        }
+	        	   
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}			
+		}	
+		return modules;
+    	
+    }
     public static boolean initLevelsOfDegree(String level, String degreeName, boolean isYearInIndustry) {
     	// Convert level to int
     	int lvl = Integer.parseInt(level);
@@ -588,8 +668,10 @@ public static boolean addDegree(String name,String code,Object[] deps,Object[] l
     
     
     public static void main(String args[]) {
-       
-    	DegreeController.initLevelsOfDegree("1", "Degree1", false);
+           	
+    	List<Module> modules = DegreeController.showOptionalModules("123456780");
+    	for(Module m: modules)
+    		System.out.println(m.moduleName);
     }
    
 }

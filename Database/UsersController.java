@@ -228,6 +228,62 @@ public static boolean addAccount(String username, String password, String role) 
 		return true;
     }
     /**
+     * For a particular username and password, returns a String, specifying what happens after the login attempt
+     * @param username
+     * @param password
+     * @return String - Could be a role, or ERROR.
+     */
+    public static String login(String username, String password) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet res = null;
+		 String role = "";
+		//The try block that closes the connection, PreparedStatement and ResultSet if there's a runtime error.
+		try {
+	        con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team045", "team045", "09fa15e9");	       
+	        pstmt = con.prepareStatement("SELECT role FROM Users WHERE username = ? AND password = ?");
+	        pstmt.setString(1, username);
+	        pstmt.setString(2, password);
+	        res = pstmt.executeQuery();
+	        res.next();
+	        role = res.getString("role");
+	        if(role == null)
+	        	return "ERROR";
+	        else
+	        	return role;
+	        	   
+	    }
+	    catch(SQLException ex) {
+	    	ex.printStackTrace();
+	    }
+		finally{
+			if(res!=null) 
+				try {
+				res.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(pstmt!=null) 
+				try {
+				pstmt.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			
+			if(con!=null) 
+				try {
+				con.close();
+				}
+				catch (SQLException ex) {
+					ex.printStackTrace();
+				}			
+		}
+		 return role;
+    }
+    /**
      * 
      * @return A list of all the users in the Users table
      */
@@ -302,6 +358,9 @@ public static boolean addAccount(String username, String password, String role) 
     		c++;
     	}
     	return userArray;
+    }
+    public static void main(String args[]) {
+    	
     }
 
 }

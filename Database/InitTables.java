@@ -70,8 +70,8 @@ public static void main(String args[])  throws SQLException {
                                    "registrationNumber VARCHAR(45) NOT NULL,"+
 		                           "label VARCHAR(45) NOT NULL, "+
                                    "level VARCHAR(2) NOT NULL, "+
-		                           "startDate DATE NOT NULL,"+
-                                   "endDate DATE NOT NULL, "+
+		                           "startDate DATE,"+
+                                   "endDate DATE, "+
 		                           "PRIMARY KEY(registrationNumber,label),"+
                                    "FOREIGN KEY(registrationNumber) REFERENCES Student(registrationNumber) ON DELETE CASCADE,"+
 		                           "FOREIGN KEY(level) REFERENCES LevelOfStudy(LOSlabel)) ENGINE = InnoDB;");	        
@@ -101,17 +101,7 @@ public static void main(String args[])  throws SQLException {
                                    "PRIMARY KEY(moduleName,level,degreeName),"+
                                    "FOREIGN KEY(moduleName) REFERENCES Module(moduleName) ON DELETE CASCADE, "+
                                    "FOREIGN KEY(degreeName,level) REFERENCES LevelOfDegree(degreeName,level) ON DELETE CASCADE) ENGINE = InnoDB;");
-	        /*//Create ModuleOfStudent table. Represents a relationship between a student and a module. Used by the registrar to add optional modules to a student.
-	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ModuleOfStudent ( "+
-	                               "registrationNumber VARCHAR(45) NOT NULL, "+
-	        		               "moduleName VARCHAR(45) NOT NULL, "+
-	                               "level VARCHAR(2) NOT NULL, "+
-	        		               "isCore BOOL NOT NULL," +
-	        		               "PRIMARY KEY (registrationNumber,moduleName), "+
-	                               "FOREIGN KEY (moduleName) REFERENCES Module(moduleName) ON DELETE CASCADE, "+
-	        		               "FOREIGN KEY (registrationNumber) REFERENCES Student(registrationNumber) ON DELETE CASCADE, "+
-	                               "FOREIGN KEY (level) REFERENCES LevelOfStudy(LOSlabel)) ENGINE = InnoDB;");
-	        */
+
 	        //Create Grades table (Represents a relationship between a period of study and a moduleOfStudent.)
 	        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Grade ( "+
                                    "registrationNumber VARCHAR(45) NOT NULL,"+
