@@ -532,7 +532,7 @@ public static boolean addDegree(String name,String code,Object[] deps,Object[] l
 	        res = pstmt.executeQuery();
 	        res.next();
 	        String maxLevel = res.getString("level");
-	        System.out.println(maxLevel);
+	        
 	        res.close();
 	        pstmt.close();
 	        
