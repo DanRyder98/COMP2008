@@ -133,7 +133,7 @@ public class LoggingIn extends javax.swing.JFrame {
         
         this.setVisible(false);
         switch (role) {
-        	case "Student": new StudentShowGrades().setVisible(true);break;
+        	case "Student": new StudentShowGrades(username).setVisible(true);break;
         	case "Administrator": new HomePageAdministrator().setVisible(true);break;
         	case "Regitrar": new homepageR("Registrar Home Page").setVisible(true);break;
         	case "Teacher": new homepageT("Teacher Home Page").setVisible(true);break;

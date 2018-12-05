@@ -2,6 +2,7 @@ package Admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import database2.DegreeController;
 import database2.Module;
 import database2.Student;
 import database2.StudentController;
@@ -67,13 +68,34 @@ public class CheckModules extends javax.swing.JFrame {
         StudentLabel.setText("Student:");
         StudentLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
+
         SelectedModulesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
+        		new Object [][] {
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null},
+                    {null, null, null}
+                },
             new String [] {
                 "Module Name", "Module Code", "Credits"
             }
@@ -95,8 +117,29 @@ public class CheckModules extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(SelectedModulesTable);
 
+        
         OptionalModulesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+            	{null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -133,10 +176,30 @@ public class CheckModules extends javax.swing.JFrame {
 
         StudentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+            	{null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
                 "Student Name", "Registration Number"
@@ -243,7 +306,7 @@ public class CheckModules extends javax.swing.JFrame {
        
     	Student student = listOfStudents.get(StudentTable.getSelectedRow());
         List <Module> listOfStudentSelectedModules = StudentController.showSelectedModulesOfStudent(student.registrationNumber);
-        List <Module> listOfDegreeOptionalModules = testTables.getModuleList(student.forename);
+        List <Module> listOfDegreeOptionalModules = DegreeController.showOptionalModules(student.registrationNumber);
         String creditsMessage = "Good stuff";
         CreditsMessageLabel.setText(creditsMessage);
         

@@ -13,7 +13,9 @@ public class StudentShowGrades extends javax.swing.JFrame {
    /**
     * Creates new form StudentShowGrades
     */
-   public StudentShowGrades() {
+	static String username;
+   public StudentShowGrades(String username) {
+	   this.username = username;
        initComponents();
        List<Grade> averages = new ArrayList<>();
        averages.add(new Grade("1234","A", "Functional Programming", 56.1, 80));
@@ -52,7 +54,7 @@ public class StudentShowGrades extends javax.swing.JFrame {
        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
        StudentLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-       StudentLabel.setText("Student");
+       StudentLabel.setText("Student: " + username);
 
        RemoveModulesLabel.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
        RemoveModulesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -68,6 +70,26 @@ public class StudentShowGrades extends javax.swing.JFrame {
 
        GradesTable.setModel(new javax.swing.table.DefaultTableModel(
            new Object [][] {
+        	   {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
                {null, null, null},
                {null, null, null},
                {null, null, null},
@@ -136,10 +158,30 @@ public class StudentShowGrades extends javax.swing.JFrame {
 
        AveragesTable.setModel(new javax.swing.table.DefaultTableModel(
            new Object [][] {
-               {null, null},
-               {null, null},
-               {null, null},
-               {null, null}
+        	   {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null},
+               {null, null, null}
            },
            new String [] {
                "Period of Study", "Mean Average"
@@ -290,7 +332,7 @@ public class StudentShowGrades extends javax.swing.JFrame {
        /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
            public void run() {
-               new StudentShowGrades().setVisible(true);
+               new StudentShowGrades(username).setVisible(true);
            }
        });
    }
