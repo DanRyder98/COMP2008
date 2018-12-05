@@ -13,21 +13,21 @@ public class CheckModules extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         RegistrarLabel = new javax.swing.JLabel();
         CheckModulesLabel = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
         StudentLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        StudentList = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         SelectedModulesTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         OptionalModulesTable = new javax.swing.JTable();
         OptionalModulesLabel = new javax.swing.JLabel();
         SelectedModulesLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        StudentTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,23 +49,6 @@ public class CheckModules extends javax.swing.JFrame {
         StudentLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         StudentLabel.setText("Student:");
         StudentLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
-
-        StudentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        StudentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        StudentList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        StudentList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                StudentListMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                StudentListMousePressed(evt);
-            }
-        });
-        jScrollPane3.setViewportView(StudentList);
 
         SelectedModulesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,6 +114,39 @@ public class CheckModules extends javax.swing.JFrame {
         SelectedModulesLabel.setText("Selected Modules:");
         SelectedModulesLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
+        StudentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Student Name", "Registration Number"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        StudentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StudentTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(StudentTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,59 +164,61 @@ public class CheckModules extends javax.swing.JFrame {
                             .addComponent(RegistrarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(StudentLabel)
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SelectedModulesLabel))
-                        .addGap(18, 18, 18)
+                            .addComponent(StudentLabel)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SelectedModulesLabel)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
                                 .addComponent(OptionalModulesLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addContainerGap(158, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(RegistrarLabel)
-                .addGap(44, 44, 44)
-                .addComponent(CheckModulesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(OptionalModulesLabel)
-                    .addComponent(SelectedModulesLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StudentLabel)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(RegistrarLabel)
+                        .addGap(44, 44, 44)
+                        .addComponent(CheckModulesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(OptionalModulesLabel)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(SelectedModulesLabel)
+                                .addComponent(StudentLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12)
                 .addComponent(BackButton)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
         new homepageR("Registrar menu").setVisible(true);
-    }//GEN-LAST:event_BackButtonActionPerformed
+    }                                          
 
-    private void StudentListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StudentListMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_StudentListMousePressed
-
-    private void StudentListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StudentListMouseClicked
-        Object[] student = LevelList.getSelectedValues();
-        List <Module> listOfStudentSelectedModules = new ArrayList<>();
-        List <Module> listOfDegreeOptionalModules = new ArrayList<>();
+    private void StudentTableMouseClicked(java.awt.event.MouseEvent evt) {                                          
+        Object[] student = StudentList.getSelectedValues();
+        List <Module> listOfStudentSelectedModules = testTables.getModuleList((String)student[0]);
+        List <Module> listOfDegreeOptionalModules = testTables.getModuleList((String)student[0]);
         String creditsMessage = "";
         
         //Module Name
@@ -210,12 +228,12 @@ public class CheckModules extends javax.swing.JFrame {
         
         //Module Code
         for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).moduleCode, index, 0);
+        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).moduleCode, index, 1);
         }
         
         //Credits
         for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).credits, index, 0);
+        	SelectedModulesTable.setValueAt(listOfStudentSelectedModules.get(index).credits, index, 2);
         }
         
       //Module Name
@@ -225,14 +243,14 @@ public class CheckModules extends javax.swing.JFrame {
         
         //Module Code
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 0);
+        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 1);
         }
         
         //Credits
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 0);
+        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 2);
         }
-    }//GEN-LAST:event_StudentListMouseClicked
+    }                                         
 
     public static void main(String args[]) {
         try {
@@ -259,7 +277,7 @@ public class CheckModules extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel CheckModulesLabel;
     private javax.swing.JLabel OptionalModulesLabel;
@@ -268,9 +286,9 @@ public class CheckModules extends javax.swing.JFrame {
     private javax.swing.JLabel SelectedModulesLabel;
     private javax.swing.JTable SelectedModulesTable;
     private javax.swing.JLabel StudentLabel;
-    private javax.swing.JList<String> StudentList;
+    private javax.swing.JTable StudentTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
