@@ -1,6 +1,7 @@
 package Admin;
-import database.DegreeController;
-import database.DepartmentController;
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author Daniel Ryder
@@ -42,11 +43,7 @@ public class RemoveDepartmentDegreeAssociation extends javax.swing.JFrame {
         FullNameOfDegreeLabel.setText("Full Name of Degree:");
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DepartmentController.getDepartmentNames();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        DepartmentList.setModel(DepartmentController.getDepartmentNames());
         jScrollPane1.setViewportView(DepartmentList);
 
         DepartmentsLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N

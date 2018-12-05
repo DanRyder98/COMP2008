@@ -1,5 +1,7 @@
 package Admin;
-import database.ModuleController;
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -59,7 +61,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
 
         LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5" };
+            String[] strings = { "1", "2", "3", "4" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -86,11 +88,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         ModuleLabel.setText("Modules:");
 
         ModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        ModuleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = ModuleController.getModuleNames();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        ModuleList.setModel(ModuleController.getModuleNames());
         ModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(ModuleList);
 
@@ -100,11 +98,7 @@ public class AddModulesToDegree extends javax.swing.JFrame {
         CoreModuleLabel.setText("Core Modules:");
 
         CoreModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        CoreModuleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = ModuleController.getModuleNames();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        CoreModuleList.setModel(ModuleController.getModuleNames());
         CoreModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane5.setViewportView(CoreModuleList);
 

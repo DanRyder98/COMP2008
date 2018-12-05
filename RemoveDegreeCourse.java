@@ -1,5 +1,7 @@
 package Admin;
-import database.DegreeController;
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author Daniel Ryder
@@ -55,11 +57,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         ExistingCoursesLabel.setText("Existing Courses:");
 
         ExistingCoursesList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        ExistingCoursesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DegreeController.getDegreeNameAsString();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        ExistingCoursesList.setModel(DegreeController.getDegreeNameAsString());
         ExistingCoursesList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(ExistingCoursesList);
 
@@ -128,7 +126,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
     
     private void CheckSuccess(boolean success) {
         if (success) {
-            OutputLabel.setText("Degree Removed");
+            OutputLabel.setText("Degree Added");
         }
         else {
             OutputLabel.setText("SQL Error");
@@ -139,7 +137,7 @@ public class RemoveDegreeCourse extends javax.swing.JFrame {
         Object[] existingCourses = ExistingCoursesList.getSelectedValues();
         
         if (CheckErrors()) {
-            CheckSuccess(DegreeController.removeDegree(existingCourses));
+            CheckSuccess(DegreeController.removeDegreeDepartmentAssociation((String) existingCourses[0]));
         }
     }//GEN-LAST:event_RemoveDegreeCourseButtonActionPerformed
 

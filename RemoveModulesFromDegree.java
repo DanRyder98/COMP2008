@@ -1,9 +1,6 @@
 package Admin;
 import java.awt.*;
 import javax.swing.*;
-
-import database.ModuleController;
-
 import java.sql.*;
 
 /**
@@ -55,7 +52,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
 
         LevelList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         LevelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1", "2", "3", "4", "5" };
+            String[] strings = { "1", "2", "3", "4" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -69,11 +66,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
         ModuleLabel.setText("Modules:");
 
         ModuleList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        ModuleList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = ModuleController.getModuleNames();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        ModuleList.setModel(ModuleController.getModuleNames());
         ModuleList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(ModuleList);
 
@@ -200,7 +193,7 @@ public class RemoveModulesFromDegree extends javax.swing.JFrame {
         Object [] modules = ModuleList.getSelectedValues();
         
         if (CheckErrors()) {
-           ModuleController.removeModulesFromLevelOfDegree(modules,(String) levelObject[0], fullname);
+            //CheckSuccess(INSERT SQL HERE);
         }
     }//GEN-LAST:event_RemoveModuleButtonActionPerformed
 

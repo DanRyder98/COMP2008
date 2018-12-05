@@ -1,6 +1,7 @@
 package Admin;
-import database.DepartmentController;
-import database.ModuleController;
+import java.awt.*;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -76,11 +77,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
         DepartmentsLabel.setText("Department(s):");
 
         DepartmentList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        DepartmentList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = DepartmentController.getDepartmentNames();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        DepartmentList.setModel(DepartmentController.getDepartmentNames());
         jScrollPane1.setViewportView(DepartmentList);
 
         TeachingTimeLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -88,7 +85,7 @@ public class AddModulesOverall extends javax.swing.JFrame {
 
         TeachingTimeList.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         TeachingTimeList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Autumn", "Spring", "Summer", "Year Long" };
+            String[] strings = { "Autunm", "Spring", "Summer", "All-year" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -265,10 +262,9 @@ public class AddModulesOverall extends javax.swing.JFrame {
         Object[] departmentsObject = DepartmentList.getSelectedValues();
         Object[] teachingTimeObject = TeachingTimeList.getSelectedValues();
         String credits = (String)CreditsComboBox.getSelectedItem();
-        int icredits = Integer.parseInt(credits);
         
         if (CheckErrors()) {
-            CheckSuccess(ModuleController.addModule(abbreviatedName, fullname, icredits, (String) teachingTimeObject[0], (String) departmentsObject[0]));
+            CheckSuccess(ModuleController.addModule(abbreviatedName, fullname, credits, (String) teachingTimeObject[0], (String) departmentsObject[0]));
         }
     }//GEN-LAST:event_AddModuleButtonActionPerformed
 
