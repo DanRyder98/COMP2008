@@ -1,15 +1,31 @@
 package Admin;
-import java.awt.*;
-import javax.swing.*;
-import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import database.Module;
+import database.Student;
+import database.StudentController;
+import database.testTables;
 
 /**
  *
  * @author Daniel Ryder
  */
 public class CheckModules extends javax.swing.JFrame {
+	
+    List<Student> listOfStudents = StudentController.getStudents();
+	
     public CheckModules() {
         initComponents();
+        //Student Name
+    	for (int index=0; index<listOfStudents.size(); index++) {
+    		StudentTable.setValueAt(listOfStudents.get(index).forename + " " + listOfStudents.get(index).surname, index, 0);
+    	}
+    	
+    	//Student Name
+    	for (int index=0; index<listOfStudents.size(); index++) {
+    		StudentTable.setValueAt(listOfStudents.get(index).registrationNumber, index, 1);
+    	}
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +44,7 @@ public class CheckModules extends javax.swing.JFrame {
         SelectedModulesLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         StudentTable = new javax.swing.JTable();
+        CreditsMessageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,6 +163,9 @@ public class CheckModules extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(StudentTable);
+        
+        CreditsMessageLabel.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        CreditsMessageLabel.setToolTipText("Hold down CTRL to select multiple or deselect");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,6 +173,8 @@ public class CheckModules extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CreditsMessageLabel)
+                .addGap(421, 421, 421)
                 .addComponent(BackButton)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -203,7 +225,9 @@ public class CheckModules extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12)
-                .addComponent(BackButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackButton)
+                    .addComponent(CreditsMessageLabel))
                 .addContainerGap())
         );
 
@@ -215,11 +239,13 @@ public class CheckModules extends javax.swing.JFrame {
         new homepageR("Registrar menu").setVisible(true);
     }                                          
 
-    private void StudentTableMouseClicked(java.awt.event.MouseEvent evt) {                                          
-        Object[] student = StudentList.getSelectedValues();
-        List <Module> listOfStudentSelectedModules = testTables.getModuleList((String)student[0]);
-        List <Module> listOfDegreeOptionalModules = testTables.getModuleList((String)student[0]);
-        String creditsMessage = "";
+    private void StudentTableMouseClicked(java.awt.event.MouseEvent evt) {
+       
+    	Student student = listOfStudents.get(StudentTable.getSelectedRow());
+        List <Module> listOfStudentSelectedModules = testTables.getModuleList(student.forename);
+        List <Module> listOfDegreeOptionalModules = testTables.getModuleList(student.forename);
+        String creditsMessage = "Good stuff";
+        CreditsMessageLabel.setText(creditsMessage);
         
         //Module Name
         for (int index=0; index<listOfStudentSelectedModules.size(); index++) {
@@ -238,17 +264,17 @@ public class CheckModules extends javax.swing.JFrame {
         
       //Module Name
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleName, index, 0);
+        	OptionalModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleName, index, 0);
         }
         
         //Module Code
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 1);
+        	OptionalModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).moduleCode, index, 1);
         }
         
         //Credits
         for (int index=0; index<listOfDegreeOptionalModules.size(); index++) {
-        	SelectedModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 2);
+        	OptionalModulesTable.setValueAt(listOfDegreeOptionalModules.get(index).credits, index, 2);
         }
     }                                         
 
@@ -280,6 +306,7 @@ public class CheckModules extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JButton BackButton;
     private javax.swing.JLabel CheckModulesLabel;
+    private javax.swing.JLabel CreditsMessageLabel;
     private javax.swing.JLabel OptionalModulesLabel;
     private javax.swing.JTable OptionalModulesTable;
     private javax.swing.JLabel RegistrarLabel;
