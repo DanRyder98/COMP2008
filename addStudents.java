@@ -1,6 +1,9 @@
-
+package Admin;
 import java.awt.*;
 import javax.swing.*;
+
+import database.DegreeController;
+import database.StudentController;
 
 
 public class addStudents extends javax.swing.JFrame {
@@ -41,7 +44,7 @@ public class addStudents extends javax.swing.JFrame {
 
         ManageStudentsLabel.setFont(new java.awt.Font("Verdana", 0, 24)); 
         ManageStudentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ManageStudentsLabel.setText("Manage Students");
+        ManageStudentsLabel.setText("Add Students");
         
         RegNumberLabel.setFont(new java.awt.Font("Verdana", 0, 18));
         RegNumberLabel.setText("Registration Number");
@@ -50,7 +53,7 @@ public class addStudents extends javax.swing.JFrame {
         RegNumberTextField.setText("");// enter value here 
         
         DegNameLabel.setFont(new java.awt.Font("Verdana", 0, 18));
-        DegNameLabel.setText("Degree Code");
+        DegNameLabel.setText("Degree Name");
         
         
         
@@ -87,7 +90,7 @@ public class addStudents extends javax.swing.JFrame {
         
         
         DegreeComboBox.setFont(new java.awt.Font("Verdana", 0, 14)); 
-        DegreeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ComputerScience", "Mechanical", "Arts", "History" }));
+        DegreeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(DegreeController.getDegreeNameAsString()));
         DegreeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DegreeComboBoxActionPerformed(evt);
@@ -180,8 +183,14 @@ public class addStudents extends javax.swing.JFrame {
 		 } else if(RegNumberTextField.getText().length()>9||RegNumberTextField.getText().length()>9) {
 			 JOptionPane.showMessageDialog(null,"Registration number must be 9 ");
 		 }else {
-			 //enter code here
-			 //CheckSuccess();//enter value
+			 String degreeName = (String)DegreeComboBox.getSelectedItem();
+			 String registrationNumber = RegNumberTextField.getText();
+			 String surname = SurnameTextField.getText();
+			 String forename = ForenameTextField.getText();
+			 String title = TitleTextField.getText();
+			 String universityEmail = UniEmailTextField.getText();
+			 String personalTutor = PTutorTextField.getText();
+			 CheckSuccess(StudentController.addStudent(registrationNumber, surname, forename, title, degreeName, universityEmail, personalTutor));
 		 }
     
     }                                                
